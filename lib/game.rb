@@ -1,6 +1,8 @@
 class Game 
-    
+    attr_reader :board
+
 def initialize
+@board = board    
 board = Board.new
 end 
 
@@ -23,8 +25,8 @@ def start_game
         game.start_game
     end
 
+    @board.board_grid
     # Where to insert the board appearing 
-
 
 end 
 
