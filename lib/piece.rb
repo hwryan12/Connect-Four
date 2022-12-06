@@ -12,7 +12,7 @@ def output
     elsif @owner == :computer
     puts "O"
     end 
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
 end
 
 end 

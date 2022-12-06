@@ -1,26 +1,25 @@
-class Board
-    attr_reader :first, :second
-  
-  def initialize
-    @letters = ["A", "B", "C", "D", "E", "F", "G"]
-    @row1 = [".", ".", ".", ".", ".", ".", "."]
-    @row2 = [".", ".", ".", ".", ".", ".", "."]
-    @row3 = [".", ".", ".", ".", ".", ".", "."]
-    @row4 = [".", ".", ".", ".", ".", ".", "."]
-    @row5 = [".", ".", ".", ".", ".", ".", "."]
-    @row6 = [".", ".", ".", ".", ".", ".", "."]
+class Turn 
+  attr_reader :turn 
 
-  end
+def initialize(player1, computer)
+    @turn = turn 
+    turn = Turn.new(player1,)
+end 
 
-  def board_grid
-    puts @letters.join
-    require 'pry'; binding.pry
-    puts @row1.join
-    puts @row2.join
-    puts @row3.join
-    puts @row4.join
-    puts @row5.join
-    puts @row6.join
-  end
+def determine_desired_location
+
+end 
+
+def determine_if_location_is_valid
+
+end 
+
+def place_token
+
+end 
+
+def check_winner 
+
+end 
 
 end
