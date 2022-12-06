@@ -9,3 +9,4 @@ class Board
     @letters.product(@numbers)
   end
 end
+
