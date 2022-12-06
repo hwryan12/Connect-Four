@@ -13,7 +13,7 @@ def start_game
     Enter p to play. Enter q to quit"
 
     user_input_start_of_game = gets.chomp 
-    
+    require 'pry'; binding.pry
     if user_input_start_of_game == "p"
         game.begin_play
     elsif user_input_start_of_game == "q"
