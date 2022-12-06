@@ -1,12 +1,46 @@
-
 class Board
-  def initialize
-    @letters = ["A", "B", "C", "D", "E", "F", "G"]
-    @numbers = [1, 2, 3, 4, 5, 6]
-  end
+  attr_reader :row1, :row2
 
-  def board_grid
-    @letters.product(@numbers)
-  end
+def initialize
+  @letters = ["A", "B", "C", "D", "E", "F", "G"]
+  @row1 = [".", ".", ".", ".", ".", ".", "."]
+  @row2 = [".", ".", ".", ".", ".", ".", "."]
+  @row3 = [".", ".", ".", ".", ".", ".", "."]
+  @row4 = [".", ".", ".", ".", ".", ".", "."]
+  @row5 = [".", ".", ".", ".", ".", ".", "."]
+  @row6 = [".", ".", ".", ".", ".", ".", "."]
+
 end
 
+
+
+
+
+# MODIFICATIONS 
+
+
+
+
+
+
+def board_grid
+letter = @letters.join(" ")
+puts @row1.join(" ")
+puts @row2.join(" ")
+puts @row3.join(" ")
+puts @row4.join(" ")
+puts @row5.join(" ")
+puts @row6.join(" ")
+  require 'pry'; binding.pry
+end
+
+def build_grid
+
+end
+end 
+require 'pry'; binding.pry
+
+board = Board.new
+
+board.board_grid
+board.build_grid
