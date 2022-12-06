@@ -1,7 +1,7 @@
 class Game 
     
 def initialize
-
+board = Board.new
 end 
 
 def start_game 

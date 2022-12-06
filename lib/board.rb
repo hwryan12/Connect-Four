@@ -9,3 +9,9 @@ class Board
     @letters.product(@numbers)
   end
 end
+
+board = Board.new 
+board.board_grid
+
+require 'pry'; binding.pry
+
