@@ -10,8 +10,8 @@ class Board
   end
 end
 
-board = Board.new 
-board.board_grid
+# board = Board.new 
+# board.board_grid
 
-require 'pry'; binding.pry
+# require 'pry'; binding.pry
 
