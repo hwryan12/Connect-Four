@@ -13,17 +13,14 @@ class Board
   end
 
   def board_grid
-    puts @letters.join(" ")
-    puts @row1.join(" ")
-    puts @row2.join(" ")
-    puts @row3.join(" ")
-    puts @row4.join(" ")
-    puts @row5.join(" ")
-    puts @row6.join(" ")
+    puts @letters.join
+    require 'pry'; binding.pry
+    puts @row1.join
+    puts @row2.join
+    puts @row3.join
+    puts @row4.join
+    puts @row5.join
+    puts @row6.join
   end
 
 end
-
-board = Board.new
-
-board.board_grid
