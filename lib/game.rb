@@ -1,9 +1,10 @@
 class Game 
-    attr_reader :board
+    attr_reader :board, :game
 
 def initialize
-@board = board    
 board = Board.new
+@board = board
+# require 'pry'; binding.pry
 end 
 
 def start_game 
@@ -15,22 +16,22 @@ def start_game
     Enter p to play. Enter q to quit"
 
     user_input_start_of_game = gets.chomp 
-    require 'pry'; binding.pry
+    
+    @board.board_grid
     if user_input_start_of_game == "p"
-        game.begin_play
+        self.begin_play
     elsif user_input_start_of_game == "q"
         puts "Looks like you're all Connect 4'd out for today. See you later!"
     else 
         puts "Please provide a valid response. We won't make you play! Just tell us you don't want to!"
-        game.start_game
+        self.start_game
     end
-
-    @board.board_grid
-    # Where to insert the board appearing 
 
 end 
 
+def begin_play 
 
+end 
 
 
 

@@ -11,7 +11,7 @@ end
 
 piece = Piece.new(:human)
 # piece.quantity returns = 21 
-require 'pry'; binding.pry
+# require 'pry'; binding.pry
 
 
 

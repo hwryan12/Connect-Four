@@ -24,23 +24,19 @@ end
 
 
 def board_grid
-letter = @letters.join(" ")
+puts @letters.join(" ")
 puts @row1.join(" ")
 puts @row2.join(" ")
 puts @row3.join(" ")
 puts @row4.join(" ")
 puts @row5.join(" ")
 puts @row6.join(" ")
-  require 'pry'; binding.pry
+ 
 end
 
-def build_grid
-
-end
 end 
-require 'pry'; binding.pry
 
-board = Board.new
 
-board.board_grid
-board.build_grid
+# board.board_grid
+# board.build_grid
+# require 'pry'; binding.pry
