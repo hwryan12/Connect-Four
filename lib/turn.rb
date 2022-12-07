@@ -44,7 +44,16 @@ end
 
         if @player
             if @choice == "A" 
+                @a.find do |element|
+                    element == "." 
+                            
+                    end
+                end
+
+                require 'pry'; binding.pry
+                
                 @board.a[0] = "X"
+
 
                 require 'pry'; binding.pry
                     require 'pry'; binding.pry
@@ -62,7 +71,8 @@ end
             # elsif userchoice == "G"
             #     @playingboard.row6[6] = "X"
             # end 
-        end 
+        
+    end 
 
         if @computer
             
