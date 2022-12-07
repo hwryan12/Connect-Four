@@ -1,39 +1,43 @@
 class Board
-  attr_reader :board
+  attr_reader :g, :f, :e, :d, :c, :b, :a
 
-def initialize
-  board = { #A   B .   C   D .   E .  F .  G
-    "G" => [".", "X", "X", ".", "X", ".", "."],
-    "F" => ["O", ".", ".", ".", ".", ".", "."], 
-    "E" => [".", "X", ".", ".", ".", ".", "."],
-    "D" => [".", ".", ".", ".", ".", ".", "."],
-    "C" => [".", ".", ".", ".", ".", ".", "."],
-    "B" => [".", ".", ".", ".", ".", ".", "."],
-    "A" => [".", ".", ".", ".", ".", ".", "."]
-  }
-@board = board
+def initialize 
+    garray = ["x", "X", "X", "x", "X", ".", "."]
+    farray = ["O", ".", ".", ".", ".", ".", "."] 
+    earray = [".", "X", ".", ".", ".", ".", "."]
+    darray = [".", ".", ".", ".", ".", ".", "."]
+    carray = [".", ".", ".", ".", ".", ".", "."]
+    barray = [".", ".", ".", ".", ".", ".", "."]
+    aarray = [".", ".", ".", ".", ".", ".", "."]
+  
+
+@g = garray
+@f = farray 
+@e = earray
+@d = darray 
+@c = carray 
+@b = barray
+@a = aarray 
+
+# If have time later towards end, clean this up by putting this all into one array and then separating those arrays. 
 end
-
-
-
-
-
-# MODIFICATIONS 
-
-
-
-
-
 
 def board_grid
   letters = ["A", "B", "C", "D", "E", "F", "G"]
-acolumn = [@board["G"][0], @board["F"][0], @board["E"][0], @board["D"][0], @board["C"][0], @board["B"][0], @board["A"][0]]
-bcolumn =[@board["G"][1], @board["F"][1], @board["E"][1], @board["D"][1], @board["C"][1], @board["B"][1], @board["A"][1]]
-column = [@board["G"][2], @board["F"][2], @board["E"][2], @board["D"][2], @board["C"][2], @board["B"][2], @board["A"][2]]
-dcolumn = [@board["G"][3], @board["F"][3], @board["E"][3], @board["D"][3], @board["C"][3], @board["B"][3], @board["A"][3]]
-ecolumn = [@board["G"][4], @board["F"][4], @board["E"][4], @board["D"][4], @board["C"][4], @board["B"][4], @board["A"][4]]
-fcolumn = [@board["G"][5], @board["F"][5], @board["E"][5], @board["D"][5], @board["C"][5], @board["B"][5], @board["A"][5]]
-gcolumn = [@board["G"][6], @board["F"][6], @board["E"][6], @board["D"][6], @board["C"][6], @board["B"][6], @board["A"][6]]
+
+acolumn = [@a[0], @b[0], @c[0], @d[0], @e[0], @e[0], @g[0]]
+
+bcolumn =[@a[1], @b[1], @c[1], @d[1], @e[1], @e[1], @g[1]]
+
+column = [@a[2], @b[2], @c[2], @d[2], @e[2], @e[2], @g[2]]
+
+dcolumn = [@a[3], @b[3], @c[3], @d[3], @e[3], @e[3], @g[3]]
+
+ecolumn = [@a[4], @b[4], @c[4], @d[4], @e[4], @e[4], @g[4]]
+
+fcolumn = [@a[5], @b[5], @c[5], @d[5], @e[5], @e[5], @g[5]]
+
+gcolumn = [@a[6], @b[6], @c[6], @d[6], @e[6], @e[6], @g[6]]
 
 puts letters.join(" ")
 puts acolumn.join(" ")
@@ -48,7 +52,7 @@ end
 
 def begin_play
 
-  Turn.new(@board).determine_valid_placement
+  Turn.new(@a, @b, @c, @d, @e, @f, @g).determine_chosen_location
   end 
 
 end 
