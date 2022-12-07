@@ -1,25 +1,46 @@
-class Turn 
-  attr_reader :turn 
+class Board
+  attr_reader :board
 
-def initialize(player1, computer)
-    @turn = turn 
-    turn = Turn.new(player1,)
+def initialize
+board = {
+  "A" => [".", ".", ".", ".", ".", ".", "."],
+  "B" => [".", ".", ".", ".", ".", ".", "."], 
+  "C" => [".", ".", ".", ".", ".", ".", "."],
+  "D" => [".", ".", ".", ".", ".", ".", "."],
+  "E" => [".", ".", ".", ".", ".", ".", "."],
+  "F" => [".", ".", ".", ".", ".", ".", "."],
+  "G" => [".", ".", ".", ".", ".", ".", "."]
+}
+@board = board
 end 
 
-def determine_desired_location
 
-end 
 
-def determine_if_location_is_valid
+# # MODIFICATIONS 
 
-end 
 
-def place_token
 
-end 
 
-def check_winner 
 
-end 
 
+def board_grid
+
+letters = ["A", "B", "C", "D", "E", "F", "G"]
+puts letters.join(" ")
+puts @board["A"].join(" ")
+puts @board["B"].join(" ")
+puts @board["C"].join(" ")
+puts @board["D"].join(" ")
+puts @board["E"].join(" ")
+puts @board["F"].join(" ")
+puts @board["G"].join(" ")
+ 
 end
+
+end 
+
+board = Board.new
+
+board.board_grid
+require 'pry'; binding.pry
+

@@ -1,6 +1,6 @@
 class Piece 
     attr_reader :owner,
-                :location
+                :number
 
 def initialize(owner) 
 @owner = owner
@@ -17,8 +17,8 @@ end
 
 end 
 
-piece =Piece.new(:human)
-piece.output
+# piece =Piece.new(:human)
+# piece.output
 
 # if owner is human --> X
 # if owner is computer --> Y 
