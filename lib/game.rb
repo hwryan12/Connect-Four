@@ -2,8 +2,10 @@ class Game
     attr_reader :board, :game
 
 def initialize
-mockboard = Board.new
-@mockboard = mockboard
+board = Board.new
+@board = board
+turn = Turn.new(@board)
+@turn = turn 
 end 
 
 def start_game 
@@ -17,8 +19,8 @@ def start_game
     user_input_start_of_game = gets.chomp 
     
     if user_input_start_of_game == "p"
-        @mockboard.board_grid
-        @mockboard.begin_play
+        @board.board_grid
+        self.begin_play
         
     elsif user_input_start_of_game == "q"
         puts "Looks like you're all Connect 4'd out for today. See you later!"
@@ -28,6 +30,11 @@ def start_game
     end
 
 end 
+
+def begin_play
+
+    @turn.determine_chosen_location
+  end 
 
 
 
