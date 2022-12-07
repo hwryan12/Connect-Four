@@ -3,8 +3,6 @@ class Board
 
 def initialize 
     
-
-
     garray = ["g", "X", "G", "x", "X", "."].reverse
     farray = ["f", "F", ".", ".", ".", "."].reverse
     earray = ["e", "X", ".", "E", ".", "."].reverse
@@ -26,6 +24,7 @@ def initialize
 # @all_arrays = all_arrays
 
 # If have time later towards end, clean this up by putting this all into one array and then separating those arrays. 
+@board = board 
 end
 
 def board_grid #printed version
@@ -56,9 +55,23 @@ end
 def begin_play
 
   Turn.new(@a, @b, @c, @d, @e, @f, @g).determine_chosen_location
-  end 
+end 
+
+def update_board(board, moda, modb, modc, modd)
+  # moda 
+  @a = moda
+  @b = modb
+  @c = modc
+  @d = modd 
+  require 'pry'; binding.pry
+  
+  
+  end
+
 
 end 
+
+
 
 # board = Board.new 
 # require 'pry'; binding.pry
