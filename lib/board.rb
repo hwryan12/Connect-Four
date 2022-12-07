@@ -65,10 +65,7 @@ class Board
 
   end
 
-  def begin_play
 
-    Turn.new(@a, @b, @c, @d, @e, @f, @g).determine_chosen_location
-  end 
 
   def update_board(board, moda, modb, modc, modd)
     # moda 

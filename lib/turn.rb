@@ -1,8 +1,8 @@
 class Turn 
     attr_reader :turn 
 
-    def initialize(a, b, c, d, e, f, g) 
-        board = Board.new
+    def initialize(board)
+        # Mr. Ruby creates a local variable called @board that imports all of the data from game.rb 
         @board = board
         humanpieces = Piece.new(:human)
         computerpieces = Piece.new(:computer)
@@ -10,14 +10,6 @@ class Turn
         computer= Player.new(:computer, computerpieces)
         @player = player
         @computer = computer
-        # @all_arrays = all_arrays
-        @a = a 
-        @b = b
-        @c = c 
-        @d = d 
-        @e = e 
-        @f = f 
-        @g = g 
         @choice = nil
     end 
 
@@ -44,14 +36,15 @@ class Turn
     def determine_valid_placement
 
         if @player
+            if @choice == "A"
+                 
+            @board.a[0] = "L"
             require 'pry'; binding.pry
-            if @choice == "A" 
-            @moda = []
-            @a = @a.drop(1)
-            @moda = @a << "W"
-            @modb = nil
-            @modc = nil 
-            @modd = nil 
+            # @a = @a.drop(1)
+            # @moda = @a << "X"
+            # @modb = nil
+            # @modc = nil 
+            # @modd = nil 
             require 'pry'; binding.pry
             @board.update_board(@board, @moda, @modb, @modc, @modd)
             require 'pry'; binding.pry
