@@ -2,6 +2,9 @@ class Board
   attr_accessor :f, :e, :d, :c, :b, :a, :g
 
 def initialize 
+    
+
+
     garray = ["g", "X", "G", "x", "X", "."].reverse
     farray = ["f", "F", ".", ".", ".", "."].reverse
     earray = ["e", "X", ".", "E", ".", "."].reverse
@@ -18,6 +21,9 @@ def initialize
 @c = carray 
 @b = barray
 @a = aarray 
+
+# all_arrays = [garray, farray, earray, darray, carray, barray, aarray]
+# @all_arrays = all_arrays
 
 # If have time later towards end, clean this up by putting this all into one array and then separating those arrays. 
 end
