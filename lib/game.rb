@@ -2,10 +2,8 @@ class Game
     attr_reader :board, :game
 
 def initialize
-    require 'pry'; binding.pry
 board = Board.new
 @board = board 
-require 'pry'; binding.pry
 end 
 
 def start_game 
@@ -19,9 +17,9 @@ def start_game
     user_input_start_of_game = gets.chomp 
     
     if user_input_start_of_game == "p"
-        self.begin_play
-        require 'pry'; binding.pry
         @board.board_grid
+        self.begin_play
+        
     elsif user_input_start_of_game == "q"
         puts "Looks like you're all Connect 4'd out for today. See you later!"
     else 
@@ -31,10 +29,9 @@ def start_game
 
 end 
 
-def begin_play 
-require 'pry'; binding.pry
+def begin_play
 
-Turn.new.determine_desired_row
+Turn.new.determine_valid_placement
 end 
 
 

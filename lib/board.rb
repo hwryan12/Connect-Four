@@ -1,5 +1,5 @@
 class Board
-  attr_reader :row1, :row2
+  attr_reader :row1, :row2, :row3, :row4, :row5, :row6
 
 def initialize
   @letters = ["A", "B", "C", "D", "E", "F", "G"]
