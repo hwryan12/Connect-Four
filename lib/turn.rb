@@ -44,18 +44,19 @@ class Turn
     def determine_valid_placement
 
         if @player
+            require 'pry'; binding.pry
             if @choice == "A" 
-                
-                @all_arrays.each do |array|
-                    array.find do |element| 
-                        element == "." 
-                        element.replace("W")
-                        array.replace(array)
-                    end
-                end
-
-
-                require 'pry'; binding.pry
+            @moda = []
+            @a = @a.drop(1)
+            @moda = @a << "W"
+            @modb = nil
+            @modc = nil 
+            @modd = nil 
+            require 'pry'; binding.pry
+            @board.update_board(@board, @moda, @modb, @modc, @modd)
+            require 'pry'; binding.pry
+            @self.check_winner
+            require 'pry'; binding.pry
 
 
         end 
@@ -98,11 +99,10 @@ class Turn
         end
         
     # end
- 
 
-    def place_token
-        self.check_winner
-    end
+    # def place_token
+    #     self.check_winner
+    # end
 
     def check_winner
         # if vert
@@ -124,6 +124,8 @@ class Turn
         # if repeat_turn
         #     self.determine_desired_row
         # end
+        @self.determine_chosen_location
+        require 'pry'; binding.pry
     end
     
 end 
