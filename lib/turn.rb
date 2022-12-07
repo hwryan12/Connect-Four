@@ -10,6 +10,7 @@ class Turn
         computer= Player.new(:computer, computerpieces)
         @player = player
         @computer = computer
+        # @all_arrays = all_arrays
         @a = a 
         @b = b
         @c = c 
@@ -38,17 +39,26 @@ class Turn
     end
     @choice = choice 
     self.determine_valid_placement
-end 
+    end 
 
     def determine_valid_placement
 
         if @player
             if @choice == "A" 
-                @board.a[0] = "X"
+                
+                @all_arrays.each do |array|
+                    array.find do |element| 
+                        element == "." 
+                        element.replace("W")
+                        array.replace(array)
+                    end
+                end
+
 
                 require 'pry'; binding.pry
-                    require 'pry'; binding.pry
-            end 
+
+
+        end 
             # if userchoice == "B"
             #     @playingboard.row6[1] = "X"
             # elsif userchoice == "C"
@@ -62,7 +72,8 @@ end
             # elsif userchoice == "G"
             #     @playingboard.row6[6] = "X"
             # end 
-        end 
+        
+    end 
 
         if @computer
             
@@ -83,10 +94,10 @@ end
                elsif machinechoice == "G"
    
                end 
-
+               self.place_token
         end
-        self.place_token
-    end
+        
+    # end
  
 
     def place_token
@@ -115,7 +126,7 @@ end
         # end
     end
     
-#break
+end 
 end
 
 
