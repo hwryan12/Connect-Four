@@ -3,7 +3,7 @@ class Game
 
 def initialize
 board = Board.new
-@board = board 
+@board = board
 end 
 
 def start_game 
@@ -18,21 +18,18 @@ def start_game
     
     if user_input_start_of_game == "p"
         @board.board_grid
-        self.begin_play
+        @board.begin_play
         
     elsif user_input_start_of_game == "q"
         puts "Looks like you're all Connect 4'd out for today. See you later!"
     else 
         puts "Please provide a valid response. We won't make you play! Just tell us you don't want to!"
-        self.start_game
+        @board.start_game
     end
 
 end 
 
-def begin_play
 
-Turn.new.determine_valid_placement
-end 
 
 
 

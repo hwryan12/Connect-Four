@@ -27,7 +27,6 @@ end
 
 def board_grid
   letters = ["A", "B", "C", "D", "E", "F", "G"]
-  
 acolumn = [@board["G"][0], @board["F"][0], @board["E"][0], @board["D"][0], @board["C"][0], @board["B"][0], @board["A"][0]]
 bcolumn =[@board["G"][1], @board["F"][1], @board["E"][1], @board["D"][1], @board["C"][1], @board["B"][1], @board["A"][1]]
 column = [@board["G"][2], @board["F"][2], @board["E"][2], @board["D"][2], @board["C"][2], @board["B"][2], @board["A"][2]]
@@ -46,6 +45,11 @@ puts fcolumn.join(" ")
 puts gcolumn.join(" ")
 
 end
+
+def begin_play
+
+  Turn.new(@board).determine_valid_placement
+  end 
 
 end 
 

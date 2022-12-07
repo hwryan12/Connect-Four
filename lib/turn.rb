@@ -1,15 +1,14 @@
 class Turn 
     attr_reader :turn 
 
-    def initialize 
+    def initialize(board) 
         humanpieces = Piece.new(:human)
         computerpieces = Piece.new(:computer)
         player= Player.new(:human, humanpieces)
         computer= Player.new(:computer, computerpieces)
         @player = player
         @computer = computer
-        playingboard = Board.new
-        @playingboard = playingboard
+        @board = board
     end 
 
     def determine_valid_placement
@@ -27,9 +26,9 @@ class Turn
             userchoice = gets.chomp 
 
             if userchoice == "A" 
-                achoices[0] = "X"
                 require 'pry'; binding.pry
-                achoices = achoices.shift 
+                require 'pry'; binding.pry
+        
                 require 'pry'; binding.pry
             end 
             if userchoice == "B"
