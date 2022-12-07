@@ -1,8 +1,10 @@
 class Player 
 
-def initialize(name, pieces)
+  attr_reader :name, :pieces
 
-end 
-
-
+  def initialize(name, pieces)
+    @name = name 
+    @pieces = 21
+    @has_won = false
+  end 
 end
