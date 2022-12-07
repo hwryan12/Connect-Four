@@ -26,14 +26,6 @@ class Turn
 
             userchoice = gets.chomp 
 
-achoices = [@playingboard.row6[0], @playingboard.row5[0], @playingboard.row4[0], @playingboard.row3[0], @playingboard.row2[0], @playingboard.row1[0]]
-bchoices= [@playingboard.row6[1], @playingboard.row5[1], @playingboard.row4[1], @playingboard.row3[1], @playingboard.row2[1], @playingboard.row1[1]]
-cchoices= [@playingboard.row6[2], @playingboard.row5[2], @playingboard.row4[2], @playingboard.row3[2], @playingboard.row2[2], @playingboard.row1[2]]
-dchoices= [@playingboard.row6[3], @playingboard.row5[3], @playingboard.row4[3], @playingboard.row3[3], @playingboard.row2[3], @playingboard.row1[3]]
-echoices= [@playingboard.row6[4], @playingboard.row5[4], @playingboard.row4[4], @playingboard.row3[4], @playingboard.row2[4], @playingboard.row1[4]]
-fchoices= [@playingboard.row6[5], @playingboard.row5[5], @playingboard.row4[5], @playingboard.row3[5], @playingboard.row2[5], @playingboard.row1[5]]
-choices= [@playingboard.row6[6], @playingboard.row5[6], @playingboard.row4[6], @playingboard.row3[6], @playingboard.row2[6], @playingboard.row1[6]]
-
             if userchoice == "A" 
                 achoices[0] = "X"
                 require 'pry'; binding.pry
