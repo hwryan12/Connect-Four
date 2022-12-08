@@ -152,22 +152,47 @@ end #end for method
 
 # at the end of this term self.check_winner
 
-    def check_winner
-        # if vert
+def check_winner
+  if diagonal == true|| vertical == true|| horizontal == true 
+     true
+  elsif draw == true
+    false
+  else 
+    false
+end
 
-        # end
-    
-        # if horz
-    
-        # end
-    
-        # if diag
-          
-        # end
-    
-        # if draw 
-    
-        # end
+def diagonal(diagonal_pieces)
+  # Return here. Maybe hardcode all potential diagonal placements
+end
+
+def vertical(column)
+  column.map do |pieces|
+    pieces.join("")
+    return true if four_in_a_row(pieces) != nil
+  end
+end
+
+def horizontal(row)
+  row.map do |pieces|
+    pieces.join("")
+    return true if four_in_a_row(pieces) != nil
+  end
+end
+
+def draw(a, b, c, d, e, f)
+  if @a.empty? == false && @b.empty? == false && @c.empty? == false && @d.empty? == false && @e.empty? == false && f.empty? == false
+    return true
+    puts "Draw!"
+  end
+end
+
+def four_in_a_row(pieces)
+  if pieces.include?("XXXX")
+    puts "Player wins!"
+    elsif pieces.include?("OOOO")
+    puts "The Computer wins!"
+  end
+end
 
         # if repeat_turn
         #     self.determine_desired_row
