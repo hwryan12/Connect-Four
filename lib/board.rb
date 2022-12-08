@@ -38,7 +38,6 @@ class Board
     puts [a[1], b[1], c[1], d[1], e[1], f[1], g[1]].join(' ') 
     puts [a[0], b[0], c[0], d[0], e[0], f[0], g[0]].join(' ') 
     
-
   end
 
 
