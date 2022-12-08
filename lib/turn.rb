@@ -236,75 +236,60 @@ class Turn
 
     @computer.pieces -= 1 
     @board.board_grid
-    end 
+     
  #end for method
-
-    def check_winner 
-        puts "winner checked"
-    end
-
 end 
     def check_winner
-    if diagonal == true|| vertical == true|| horizontal == true 
-        true
-    elsif draw == true
-        false
-    else 
-        false
+        self.vertical
+        # self.horizontal
+        # self.diagonal
+        require 'pry'; binding.pry
     end
-
-    def diagonal(diagonal_pieces)
-    # Return here. Maybe hardcode all potential diagonal placements
-    end
-
-    def vertical(column)
-        column.map do |pieces|
-        pieces.join("")
-        return true if four_in_a_row(pieces) != nil
+    def vertical
+        require 'pry'; binding.pry
+        @board.a.each do |a|
+            puts "Test"
         end
+            # end 
     end
 
-    def horizontal(row)
-        row.map do |pieces|
-        pieces.join("")
-        return true if four_in_a_row(pieces) != nil
-        end
-    end
-
-    def draw(player, computer)
-        if player.pieces == 0 && computer.pieces == 0
-        puts "Draw!"
-        end
-    end
-
-    def four_in_a_row(pieces)
-        if pieces.include?("XXXX")
-            puts "Player wins!"
-        elsif pieces.include?("OOOO")
-            puts "The Computer wins!"
-        end
-    end
-
-    # def invalid_selection(choice)
-    #     if choice != "A" || "B" || "C" || "D" || "E" || "F" || "G" || "Exit"
-    #         puts "Did you mean A, B, C, D, E, F, or G?"
-    #         puts "Please try again select a vaild column."
-    #     elsif choice = "A" && @a_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "B" && @b_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "C" && @c_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "D" && @d_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "E" && @e_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "F" && @f_count.empty? == false
-    #         puts "This column is full! Please choose another."
-    #     elsif choice = "G" && @g_count.empty? == false
-    #         puts "This column is full! Please choose another."
-
-            # Return to main menu function or something similar here
-        # end
+    # def horizontal(row)
+    #     row.map do |pieces|
+    #     pieces.join("")
+    #     return true if four_in_a_row(pieces) != nil
+    #     end
     # end
+
+    # def diagonal(diagonal_pieces)
+    # # Return here. Maybe hardcode all potential diagonal placements
+    # end
+    
+    # if diagonal == true|| vertical == true|| horizontal == true 
+    #     true
+    # elsif draw == true
+    #     false
+    # else 
+    #     false
+    # end
+
+
+
+
+
+
+
+    # def draw(player, computer)
+    #     if player.pieces == 0 && computer.pieces == 0
+    #     puts "Draw!"
+    #     end
+    # end
+
+    # def four_in_a_row(pieces)
+    #     if pieces.include?("XXXX")
+    #         puts "Player wins!"
+    #     elsif pieces.include?("OOOO")
+    #         puts "The Computer wins!"
+    #     end
+    # end
+
 end
