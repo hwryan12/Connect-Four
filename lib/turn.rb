@@ -39,7 +39,7 @@ class Turn
             G"
             
            choice = gets.chomp
-
+            require "pry"; binding.pry
         if choice == "A"
                  if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -131,8 +131,10 @@ class Turn
                 end
                 end 
         elsif choice == "Exit"
-            game.start_game
-        else puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
+            new_game = Game.new
+            new_game.start_game
+        elsif choice != "A" || choice != "B" || choice != "C" || choice != "D" || choice != "E" || choice != "F" || choice != "G" || choice != "Exit"
+            puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
             self.human_choice
         end #end for @choice = A
 
@@ -272,7 +274,6 @@ end
     def draw(player, computer)
         if player.pieces == 0 && computer.pieces == 0
         puts "Draw!"
-        break
         end
     end
 
@@ -284,26 +285,26 @@ end
         end
     end
 
-    def invalid_selection(choice)
-        if choice != "A" || != "B" || != "C" || != "D" || != "E" || != "F" || != "G"
-            puts "Did you mean A, B, C, D, E, F, or G?"
-            puts "Please try again select a vaild column."
-        elsif choice = "A" && @a_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "B" && @b_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "C" && @c_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "D" && @d_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "E" && @e_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "F" && @f_count.empty? == false
-            puts "This column is full! Please choose another."
-        elsif choice = "G" && @g_count.empty? == false
-            puts "This column is full! Please choose another."
+    # def invalid_selection(choice)
+    #     if choice != "A" || "B" || "C" || "D" || "E" || "F" || "G" || "Exit"
+    #         puts "Did you mean A, B, C, D, E, F, or G?"
+    #         puts "Please try again select a vaild column."
+    #     elsif choice = "A" && @a_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "B" && @b_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "C" && @c_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "D" && @d_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "E" && @e_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "F" && @f_count.empty? == false
+    #         puts "This column is full! Please choose another."
+    #     elsif choice = "G" && @g_count.empty? == false
+    #         puts "This column is full! Please choose another."
 
             # Return to main menu function or something similar here
-        end
-    end
+        # end
+    # end
 end
