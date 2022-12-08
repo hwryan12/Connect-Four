@@ -37,65 +37,115 @@ class Turn
 
         if @player
             if @choice == "A"
-                 
-            @board.a[0] = "L"
-            require 'pry'; binding.pry
-            # @a = @a.drop(1)
-            # @moda = @a << "X"
-            # @modb = nil
-            # @modc = nil 
-            # @modd = nil 
-            require 'pry'; binding.pry
-            @board.update_board(@board, @moda, @modb, @modc, @modd)
-            require 'pry'; binding.pry
-            @self.check_winner
-            require 'pry'; binding.pry
+                @board.a.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                    require 'pry'; binding.pry
+                 else puts "Invalid placement- you cannot place your chip here. Please choose again."
+                      self.determine_chosen_location
+                 end
+                end 
 
-
-        end 
-            # if userchoice == "B"
-            #     @playingboard.row6[1] = "X"
-            # elsif userchoice == "C"
-            #     @playingboard.row6[2] = "X"
-            # elsif userchoice == "D"
-            #     @playingboard.row6[3] = "X"
-            # elsif userchoice == "E"
-            #     @playingboard.row6[4] = "X"
-            # elsif userchoice == "F"
-            #     @playingboard.row6[5] = "X"
-            # elsif userchoice == "G"
-            #     @playingboard.row6[6] = "X"
-            # end 
-        
-    end 
-
-        if @computer
+            elsif @choice == "B"
+                @board.b.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
             
-            machinechoice = ["A", "B", "C", "D", "E", "F", "G"].sample
-   
-               if machinechoice == "A"
-                @playingboard.row6[0] = "O"
-               elsif machinechoice == "B"
-   
-               elsif machinechoice == "C"
-   
-               elsif machinechoice == "D"
-   
-               elsif machinechoice == "E"
-   
-               elsif machinechoice == "F"
-   
-               elsif machinechoice == "G"
-   
-               end 
-               self.place_token
-        end
-        
-    # end
+            elsif @choice == "C"
+                @board.c.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
 
-    # def place_token
-    #     self.check_winner
-    # end
+            elsif @choice == "D"
+                @board.d.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
+
+            elsif @choice == "E"
+                @board.e.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
+
+            elsif @choice == "F"
+                @board.f.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
+
+            elsif @choice == "G"
+                @board.g.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("X")
+                 end
+                end 
+            end #end for @choice = A
+
+        elsif @computer 
+            if @choice == "A"
+                @board.a.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+
+            elsif @choice == "B"
+                @board.b.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+            
+            elsif @choice == "C"
+                @board.c.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+
+            elsif @choice == "D"
+                @board.d.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+
+            elsif @choice == "E"
+                @board.e.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+
+            elsif @choice == "F"
+                @board.f.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+
+            elsif @choice == "G"
+                @board.g.find do |letter|
+                 if letter.include?(".")
+                    letter.replace("O")
+                 end
+                end 
+            end #end for computer choice 
+            require 'pry'; binding.pry
+            self.determine_chosen_location
+    end 
+end #end for method
+                
+
+# at the end of this term self.check_winner
 
     def check_winner
         # if vert
@@ -118,10 +168,10 @@ class Turn
         #     self.determine_desired_row
         # end
         @self.determine_chosen_location
-        require 'pry'; binding.pry
+        
     end
     
-end 
+
 end
 
 
