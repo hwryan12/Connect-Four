@@ -1,6 +1,6 @@
 class Player 
 
-  attr_reader :name, :pieces
+  attr_accessor :name, :pieces, :type 
 
   def initialize(type, pieces)
     @type = type 
