@@ -17,6 +17,13 @@ RSpec.describe Turn do
   end
 
   # Does not pass
+  xit "can have the human player place the token" do
+    turn = Turn.new(@board)
+
+    turn.human_choice.choice == "A"
+    expect(turn.a_count). to eq(1)
+  
+    # Does not pass
   xit "can determine winner for diagonal" do
     turn = Turn.new(@board)
     
@@ -56,6 +63,14 @@ RSpec.describe Turn do
 
     turn.four_in_a_row(pieces)
     expect(turn.four_in_a_row).to include("OOOO")
+  end
+  
+  # Does not pass
+  xit "can play a turn" do
+    turn = Turn.new(@board)
+  
+    turn.play_turn
+    expect(turn.play_turn).to be_a(method)
   end
   
   
