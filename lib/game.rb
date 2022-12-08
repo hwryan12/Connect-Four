@@ -32,8 +32,7 @@ def start_game
 end 
 
 def begin_play
-
-    @turn.determine_chosen_location
+    @turn.play_turn
   end 
 
 

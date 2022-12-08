@@ -13,8 +13,13 @@ class Turn
         @choice = nil
     end 
 
+    def play_turn 
+        require 'pry'; binding.pry
+        self.determine_chosen_location
+    end 
+
     def determine_chosen_location
-        
+        require 'pry'; binding.pry
         if @player
             puts "Pick which row you would like to input the next token. Your choices are: 
             A

@@ -44,10 +44,3 @@ class Board
 
 end 
 
-
-
-# board = Board.new 
-# require 'pry'; binding.pry
-# board.board_grid
-# # board.build_grid
-# # require 'pry'; binding.pry
