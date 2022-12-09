@@ -23,15 +23,18 @@ class Turn
 
     def play_turn 
         self.human_choice
+        sleep(1)
         self.check_winner
         sleep(1)
         self.computer_choice
+        sleep(1)
         self.check_winner
+        sleep(1)
         self.play_turn
     end 
 
     def human_choice
-            puts "Pick which row you would like to input the next token. Your choices are: 
+        puts "Pick which row you would like to input the next token. Your choices are: 
             A
             B
             C
@@ -39,99 +42,85 @@ class Turn
             E
             F
             G"
-            
-           choice = gets.chomp
+            choice = gets.chomp
             # require "pry"; binding.pry
         if choice == "A"
-                 if @a_count >= 6 
+            if @a_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
+                self.human_choice
                 else @board.a.find do |letter|
                     if letter == (".")
-                    letter.replace("X")
-                    @a_count += 1 
-                end     
+                        letter.replace("X")
+                        @a_count += 1 
+                    end     
                 end
-                end 
-            
+            end 
         elsif choice == "B"
-                if @b_count >= 6 
+            if @b_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.b.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.b.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @b_count += 1 
-                end     
+                    end     
                 end
-                end 
-        
+            end 
         elsif choice == "C"
             if @c_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.c.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.c.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @c_count += 1 
-                end     
+                    end     
                 end
-                end 
-
+            end 
         elsif choice == "D"
             if @d_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.d.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.d.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @d_count += 1 
-                end     
+                    end     
                 end
-                end 
-
+            end 
         elsif choice == "E"
             if @e_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.e.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.e.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @e_count += 1 
-                end     
+                    end     
                 end
-                end 
-
+            end 
         elsif choice == "F"
             if @f_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.f.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.f.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @f_count += 1 
-                end     
+                    end     
                 end
-                end 
-
+            end 
         elsif choice == "G"
             if @g_count >= 6 
                 puts "This row is filled up. Try another!"
-
-                    self.human_choice
-                else @board.g.find do |letter|
-                    if letter == (".")
+                self.human_choice
+            else @board.g.find do |letter|
+                if letter == (".")
                     letter.replace("X")
                     @g_count += 1 
-                end     
+                    end     
                 end
-                end 
+            end 
         elsif choice == "Exit"
             new_game = Game.new
             new_game.start_game
@@ -140,107 +129,102 @@ class Turn
             self.human_choice
         end #end for @choice = A
 
-    @player.pieces -= 1 
-    @board.board_grid
+        @player.pieces -= 1 
+        sleep(1)
+        @board.board_grid
     end 
 
     def computer_choice       
-            choice = ["A", "B", "C", "D", "E", "F", "G"].sample
-
+        choice = ["A", "B", "C", "D", "E", "F", "G"].sample
         if choice == "A"
             if @a_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.a.find do |letter|
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.a.find do |letter|
+                if letter == (".")
+                  letter.replace("O")
+                  @a_count += 1 
+                end     
+            end
+        end 
+        elsif choice == "B"
+            if @b_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.b.find do |letter|
+                if letter == (".")
+                  letter.replace("O")
+                  @b_count += 1 
+                end     
+            end
+        end
+        elsif choice == "C"
+            if @c_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.c.find do |letter|
+                if letter == (".")
+                  letter.replace("O")
+                  @c_count += 1 
+                end     
+            end
+        end 
+        elsif choice == "D"
+            if @d_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.d.find do |letter|
                if letter == (".")
-               letter.replace("O")
-               @a_count += 1 
-           end     
-           end
-           end 
-       
-   elsif choice == "B"
-           if @b_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.b.find do |letter|
+                  letter.replace("O")
+                  @d_count += 1 
+                end     
+            end
+        end 
+        elsif choice == "E"
+            if @e_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.e.find do |letter|
                if letter == (".")
-               letter.replace("O")
-               @b_count += 1 
-           end     
-           end
-           end 
-   
-   elsif choice == "C"
-       if @c_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.c.find do |letter|
+                  letter.replace("O")
+                  @e_count += 1 
+                end     
+            end
+        end
+        elsif choice == "F"
+            if @f_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
+            else @board.f.find do |letter|
                if letter == (".")
-               letter.replace("O")
-               @c_count += 1 
-           end     
-           end
-           end 
-
-   elsif choice == "D"
-       if @d_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.d.find do |letter|
-               if letter == (".")
-               letter.replace("O")
-               @d_count += 1 
-           end     
-           end
-           end 
-
-   elsif choice == "E"
-       if @e_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.e.find do |letter|
-               if letter == (".")
-               letter.replace("O")
-               @e_count += 1 
-           end     
-           end
-           end 
-
-   elsif choice == "F"
-       if @f_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
-           else @board.f.find do |letter|
-               if letter == (".")
-               letter.replace("O")
-               @f_count += 1 
-           end     
-           end
-           end 
-
-   elsif choice == "G"
-       if @g_count >= 6 
-           puts "This row is filled up. Try another!"
-               self.computer_choice
+                  letter.replace("O")
+                  @f_count += 1 
+                end     
+            end
+        end
+        elsif choice == "G"
+            if @g_count >= 6 
+                puts "This row is filled up. Try another!"
+                self.computer_choice
            else @board.g.find do |letter|
                if letter == (".")
-               letter.replace("O")
-               @g_count += 1 
-           end     
-           end
-           end 
-   elsif choice == "Exit"
+                  letter.replace("O")
+                  @g_count += 1 
+                end     
+            end
+        end 
+    elsif choice == "Exit"
        game.start_game
-   else puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
+    else puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
        self.computer_choice
-   end #end for @choice = A
+    end #end for @choice = A
 
     @computer.pieces -= 1 
+    sleep(1)
     @board.board_grid
-     
- #end for method
-end 
+    #end for method 
+    end 
+    
     def check_winner
         self.vertical
         self.horizontal
@@ -248,6 +232,7 @@ end
         self.draw
         # require 'pry'; binding.pry
     end
+    
     def vertical
         # require 'pry'; binding.pry
         @all_arrays.each do |array|
@@ -292,7 +277,6 @@ end
 
     def diagonal
         @diag_array = []
-        
         @diag_array << [@board.a[2], @board.b[3], @board.c[4], @board.d[5]]
         @diag_array << [@board.a[1], @board.b[2], @board.c[3], @board.d[4]]
         @diag_array << [@board.b[2], @board.c[3], @board.d[4], @board.e[5]]
