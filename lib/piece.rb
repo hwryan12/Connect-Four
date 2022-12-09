@@ -3,22 +3,16 @@ class Piece
                 :number
 
 def initialize(owner) 
-@owner = owner
+    @owner = owner
 end
 
 def output
     if @owner == :human
-    puts "X"
+        puts "X"
     elsif @owner == :computer
-    puts "O"
+        puts "O"
     end 
-    # require 'pry'; binding.pry
+
 end
 
 end 
-
-# piece =Piece.new(:human)
-# piece.output
-
-# if owner is human --> X
-# if owner is computer --> Y 
