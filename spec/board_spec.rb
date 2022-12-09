@@ -1,21 +1,23 @@
 require './lib/board.rb'
-require 'RSpec'
+require 'rspec'
 
 RSpec.describe Board do 
-  board = Board.new
+  
   it "exist" do
-    expect(board).to be_a(Board)
-  end
-
-  it "has a header" do
     board = Board.new
-    board.board_grid
-    expect(board.board_grid).to be(@letters)
+    expect(board).to be_an_instance_of(Board)
   end
 
-  it "can reprint board" do
-    boar = Board.new
-    
-    expect(board.update_board).to eq(@a, @b, @c, @d)
-  end
+  it "the connectfour grid is made up of several arrays" do 
+    board = Board.new 
+
+    expect(board.a).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.b).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.c).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.d).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.e).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.f).to eq([".", ".", ".", ".", ".", "."])
+    expect(board.g).to eq([".", ".", ".", ".", ".", "."])
+  end 
+
 end
