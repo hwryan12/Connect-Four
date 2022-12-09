@@ -41,7 +41,7 @@ class Turn
             G"
             
            choice = gets.chomp
-            # require "pry"; binding.pry
+            require "pry"; binding.pry
         if choice == "A"
                  if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -252,11 +252,13 @@ end
         @all_arrays.each do |array|
             vert_array = array.join("")
             if vert_array.include?("XXXX")
-                puts "Player wins!"
+                puts "Connected 4 Vertically!"
+                puts "Player Wins!"
                 new_game = Game.new
                 new_game.start_game
             elsif vert_array.include?("OOOO")
-                puts "The Computer wins!"
+                puts "Connected 4 Vertically!"
+                puts "The Computer Wins!"
                 new_game = Game.new
                 new_game.start_game
             end
@@ -274,11 +276,13 @@ end
         @all_arrays2.each do |array|
             horiz_array = array.join("")
             if horiz_array.include?("XXXX")
-                puts "Player wins!"
+                puts "Connected 4 Horizontally!"
+                puts "Player Wins!"
                 new_game = Game.new
                 new_game.start_game
             elsif horiz_array.include?("OOOO")
-                puts "The Computer wins!"
+                puts "Connected 4 Horizontally!"
+                puts "The Computer Wins!"
                 new_game = Game.new
                 new_game.start_game
             end
@@ -286,31 +290,31 @@ end
     end
 
     # def diagonal(diagonal_pieces)
-    # # Return here. Maybe hardcode all potential diagonal placements
+    #     diag_array = []
+        
+    #     1diag_array << [@board.a[2], @board.b[3], @board.c[4], @board.d[5]]
+    #     2diag_array << [@board.a[1], @board.b[2], @board.c[3], @board.d[4]]
+    #     3diag_array << [@board.b[2], @board.c[3], @board.c[4], @board.d[5]]
+    #     4diag_array << [@board.a[0], @board.b[1], @board.c[2], @board.d[3]]
+    #     5diag_array << [@board.b[1], @board.c[2], @board.c[3], @board.d[4]]
+    #     6diag_array << [@board.c[2], @board.d[3], @board.c[4], @board.d[5]]
+    #     7diag_array << [@board.b[0], @board.c[1], @board.c[2], @board.d[3]]
+    #     8diag_array << [@board.c[1], @board.d[2], @board.c[3], @board.d[4]]
+    #     9diag_array << [@board.d[2], @board.e[3], @board.c[4], @board.d[5]]
+    #     10diag_array << [@board.c[0], @board.d[1], @board.c[2], @board.d[3]]
+    #     11diag_array << [@board.d[1], @board.e[2], @board.c[3], @board.d[4]]
+    #     12diag_array << [@board.d[0], @board.e[1], @board.c[2], @board.d[3]]
+    #     13diag_array << [@board.g[2], @board.f[3], @board.c[4], @board.d[5]]
+    #     14diag_array << [@board.g[1], @board.f[2], @board.c[3], @board.d[4]]
+    #     15diag_array << [@board.f[2], @board.e[3], @board.c[4], @board.d[5]]
+    #     16diag_array << [@board.g[0], @board.f[1], @board.c[2], @board.d[3]]
+    #     17diag_array << [@board.f[1], @board.e[2], @board.c[3], @board.d[4]]
+    #     18diag_array << [@board.e[2], @board.d[0], @board.c[4], @board.d[5]]
+    #     19diag_array << [@board.f[0], @board.e[1], @board.c[2], @board.d[3]]
+    #     20diag_array << [@board.e[1], @board.d[2], @board.c[3], @board.d[4]]
+    #     21diag_array << [@board.d[2], @board.c[3], @board.c[4], @board.d[5]]
+    #     22diag_array << [@board.e[1], @board.d[1], @board.c[2], @board.d[3]]
+    #     23diag_array << [@board.d[1], @board.c[2], @board.c[3], @board.d[4]]
+    #     24diag_array << [@board.d[0], @board.c[1], @board.c[2], @board.d[3]]
     # end
-    
-    # if diagonal == true|| vertical == true|| horizontal == true 
-    #     true
-    # elsif draw == true
-    #     false
-    # else 
-    #     false
-    # end
-
-
-
-
-
-
-
-    # def draw(player, computer)
-    #     if player.pieces == 0 && computer.pieces == 0
-    #     puts "Draw!"
-    #     end
-    # end
-
-    # def four_in_a_row(pieces)
-    #     end
-    # end
-
 end
