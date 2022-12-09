@@ -243,33 +243,47 @@ class Turn
 end 
     def check_winner
         self.vertical
-        # self.horizontal
+        self.horizontal
         # self.diagonal
         # require 'pry'; binding.pry
     end
     def vertical
         # require 'pry'; binding.pry
         @all_arrays.each do |array|
-            new_array = array.join("")
-            if new_array.include?("XXXX")
+            vert_array = array.join("")
+            if vert_array.include?("XXXX")
                 puts "Player wins!"
                 new_game = Game.new
                 new_game.start_game
-            elsif new_array.include?("OOOO")
+            elsif vert_array.include?("OOOO")
                 puts "The Computer wins!"
                 new_game = Game.new
                 new_game.start_game
             end
         end
-            # end 
     end
 
-    # def horizontal(row)
-    #     row.map do |pieces|
-    #     pieces.join("")
-    #     return true if four_in_a_row(pieces) != nil
-    #     end
-    # end
+    def horizontal
+       @all_arrays2 = []
+        @all_arrays2 << [@board.a[5], @board.b[5], @board.c[5], @board.d[5], @board.e[5], @board.f[5], @board.g[5]] 
+        @all_arrays2 << [@board.a[4], @board.b[4], @board.c[4], @board.d[4], @board.e[4], @board.f[4], @board.g[4]] 
+        @all_arrays2 << [@board.a[3], @board.b[3], @board.c[3], @board.d[3], @board.e[3], @board.f[3], @board.g[3]] 
+        @all_arrays2 << [@board.a[2], @board.b[2], @board.c[2], @board.d[2], @board.e[2], @board.f[2], @board.g[2]] 
+        @all_arrays2 << [@board.a[1], @board.b[1], @board.c[1], @board.d[1], @board.e[1], @board.f[1], @board.g[1]] 
+        @all_arrays2 << [@board.a[0], @board.b[0], @board.c[0], @board.d[0], @board.e[0], @board.f[0], @board.g[0]] 
+        @all_arrays2.each do |array|
+            horiz_array = array.join("")
+            if horiz_array.include?("XXXX")
+                puts "Player wins!"
+                new_game = Game.new
+                new_game.start_game
+            elsif horiz_array.include?("OOOO")
+                puts "The Computer wins!"
+                new_game = Game.new
+                new_game.start_game
+            end
+        end
+    end
 
     # def diagonal(diagonal_pieces)
     # # Return here. Maybe hardcode all potential diagonal placements
