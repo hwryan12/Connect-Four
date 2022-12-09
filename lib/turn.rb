@@ -18,11 +18,13 @@ class Turn
         @e_count = 0
         @f_count = 0
         @g_count = 0
+        @all_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
     end 
 
     def play_turn 
         self.human_choice
         self.check_winner
+        sleep(1)
         self.computer_choice
         self.check_winner
         self.play_turn
@@ -39,7 +41,7 @@ class Turn
             G"
             
            choice = gets.chomp
-            require "pry"; binding.pry
+            # require "pry"; binding.pry
         if choice == "A"
                  if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -243,12 +245,21 @@ end
         self.vertical
         # self.horizontal
         # self.diagonal
-        require 'pry'; binding.pry
+        # require 'pry'; binding.pry
     end
     def vertical
-        require 'pry'; binding.pry
-        @board.a.each do |a|
-            puts "Test"
+        # require 'pry'; binding.pry
+        @all_arrays.each do |array|
+            new_array = array.join("")
+            if new_array.include?("XXXX")
+                puts "Player wins!"
+                new_game = Game.new
+                new_game.start_game
+            elsif new_array.include?("OOOO")
+                puts "The Computer wins!"
+                new_game = Game.new
+                new_game.start_game
+            end
         end
             # end 
     end
@@ -285,10 +296,6 @@ end
     # end
 
     # def four_in_a_row(pieces)
-    #     if pieces.include?("XXXX")
-    #         puts "Player wins!"
-    #     elsif pieces.include?("OOOO")
-    #         puts "The Computer wins!"
     #     end
     # end
 
