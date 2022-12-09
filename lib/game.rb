@@ -1,6 +1,4 @@
 class Game 
-    attr_reader :board, 
-                :game
 
 def initialize
     board = Board.new
@@ -11,7 +9,7 @@ end
 
 def start_game 
 
-    puts "Hello, welcome to Hady and Harrison's game of Connect 4. I hope you enjoy it! Welcome to CONNECT FOUR
+    puts "Hello, welcome to Hady and Harrison's game of Connect 4. I hope you enjoy it! 
     Enter p to play. Enter q to quit"
 
     user_input_start_of_game = gets.chomp 

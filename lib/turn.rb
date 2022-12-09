@@ -20,6 +20,7 @@ class Turn
     end 
 
     def play_turn 
+
         self.human_choice
         sleep(1)
         self.check_winner
@@ -218,12 +219,12 @@ class Turn
 
         else puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
             self.computer_choice
-        end #end for @choice = A
+        end 
 
-    @computer.pieces -= 1 
-    sleep(1)
-    puts "Computer turn:"
-    @board.board_grid
+        @computer.pieces -= 1 
+        sleep(1)
+        puts "Computer turn:"
+        @board.board_grid
     end 
     
     def check_winner
