@@ -41,7 +41,7 @@ class Turn
             G"
             
            choice = gets.chomp
-            require "pry"; binding.pry
+            # require "pry"; binding.pry
         if choice == "A"
                  if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -245,6 +245,7 @@ end
         self.vertical
         self.horizontal
         self.diagonal
+        self.draw
         # require 'pry'; binding.pry
     end
     def vertical
@@ -329,6 +330,13 @@ end
                 new_game = Game.new
                 new_game.start_game
             end
+        end
+    end
+
+    def draw  
+        if @player.pieces == 0 && @computer.pieces == 0
+            puts "Draw! There's no more pieces."
+            puts "You can try again!"
         end
     end
 end
