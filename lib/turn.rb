@@ -131,6 +131,7 @@ class Turn
 
         @player.pieces -= 1 
         sleep(1)
+        puts "Your [Human Player] turn:"
         @board.board_grid
     end 
 
@@ -221,6 +222,9 @@ class Turn
 
     @computer.pieces -= 1 
     sleep(1)
+
+    puts "Computer turn:"
+
     @board.board_grid
     #end for method 
     end 
@@ -321,6 +325,8 @@ class Turn
         if @player.pieces == 0 && @computer.pieces == 0
             puts "Draw! There's no more pieces."
             puts "You can try again!"
+            new_game = Game.new
+            new_game.start_game
         end
     end
 end

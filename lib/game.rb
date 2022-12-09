@@ -24,6 +24,7 @@ def start_game
         
     elsif user_input_start_of_game == "q"
         puts "Looks like you're all Connect 4'd out for today. See you later!"
+        abort 
     else 
         puts "Please provide a valid response. We won't make you play! Just tell us you don't want to!"
         self.start_game
