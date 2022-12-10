@@ -10,40 +10,49 @@ class Turn
         @player = player
         @computer = computer
         @choice = nil
-        @a_count = 0
-        @b_count = 0
-        @c_count = 0
-        @d_count = 0
-        @e_count = 0
-        @f_count = 0
-        @g_count = 0
+
     end 
 
+    # LOOP 
     def play_turn 
 
-        self.human_choice
+        choose_column(:human)
+        place_token(:human)
+        display_board
         sleep(1)
         self.check_winner
-        sleep(1)
-        self.computer_choice
+        choose_column(:human)
+        place_token(:human)
+        display_board
         sleep(1)
         self.check_winner
-        sleep(1)
-        self.play_turn
+
+        # self.computer_choice
+        # sleep(1)
+        # self.check_winner
+        # sleep(1)
+        # self.play_turn
     end 
 
-    def human_choice
-        puts "Pick which row you would like to input the next token. Your choices are: 
-            A
-            B
-            C
-            D
-            E
-            F
-            G"
-            choice = gets.chomp
-            # require "pry"; binding.pry
-        if choice == "A"
+    def choose_column(type)
+        if type == :human
+            puts "Pick which row you would like to input the next token. Your choices are: 
+                A
+                B
+                C
+                D
+                E
+                F
+                G"
+            @choice = gets.chomp
+        if type == :computer
+            @choice = ["A", "B", "C", "D", "E", "F", "G"].sample
+        end
+    end 
+
+    def place_token(type)
+        if type == :human
+        if @choice == "A"
             if @a_count >= 6 
                 puts "This row is filled up. Try another!"
                 self.human_choice
@@ -125,7 +134,7 @@ class Turn
             new_game.start_game
         elsif choice != "A" || choice != "B" || choice != "C" || choice != "D" || choice != "E" || choice != "F" || choice != "G" || choice != "Exit"
             puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
-            self.human_choice
+            # self.human_choice
         end 
 
     @player.pieces -= 1 
@@ -136,7 +145,7 @@ class Turn
     end 
 
     def computer_choice       
-        choice = ["A", "B", "C", "D", "E", "F", "G"].sample
+        
         if choice == "A"
             if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -264,7 +273,7 @@ class Turn
         all_arrays << [@board.a[2], @board.b[2], @board.c[2], @board.d[2], @board.e[2], @board.f[2], @board.g[2]] 
         all_arrays << [@board.a[1], @board.b[1], @board.c[1], @board.d[1], @board.e[1], @board.f[1], @board.g[1]] 
         all_arrays << [@board.a[0], @board.b[0], @board.c[0], @board.d[0], @board.e[0], @board.f[0], @board.g[0]] 
-        
+
         all_arrays.each do |array|
             horiz_array = array.join("")
             if horiz_array.include?("XXXX")
