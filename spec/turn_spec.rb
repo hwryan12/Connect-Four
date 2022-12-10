@@ -6,11 +6,11 @@ require './lib/game'
 require 'rspec'
 
 RSpec.describe Turn do
-   it "a turn can exist" do 
+  it "a turn can exist" do 
 
     turn = Turn.new(@board)
     expect(turn).to be_an_instance_of(Turn)
-    end
+  end
 
   it "each player starts out with 21 pieces" do
       turn = Turn.new(@board)
@@ -22,6 +22,7 @@ RSpec.describe Turn do
       expect(player.pieces).to eq(21)
       expect(computer.pieces).to eq(21)
     end
+
 
     it "the board by default is empty before anyone plays on a turn" do
       default_board = Board.new
@@ -40,6 +41,24 @@ RSpec.describe Turn do
     it "each player can place a token" do
       board = Board.new
       turn = Turn.new(board)
+      
+    # it "each player can place a token" do
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
+
+    #   turn.place_token(:human)
+    #   turn.place_token(:computer)
+      
+    #   expect(board.board_grid).not_to eq()
+      # Come back here to add board rendered
+    # end
+    
+    xit "after each turn the participants' tokens diminsh by one" do
+      turn = Turn.new(@board)
+
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
       player = Player.new(:human, humanpieces)
@@ -93,6 +112,7 @@ RSpec.describe Turn do
 
     #   expect(turn.place_token(:human).choice).to eq("This row is filled up. Try another!")
 
+
     # end 
 
 
@@ -121,6 +141,7 @@ RSpec.describe Turn do
     #   turn.play_turn
     #   expect(turn.horizontal_win?).to be false
 
+
     #   four_in_a_row(@horiz_arrays) == true
     #   expect(turn.horizontal_win?).to be true
     # end
@@ -131,6 +152,7 @@ RSpec.describe Turn do
     #   computerpieces = Piece.new(:computer)
     #   player = Player.new(:human, humanpieces)
     #   computer = Player.new(:computer, computerpieces)
+
 
     #   turn.play_turn
     #   expect(turn.diagonal_win?).to be false
@@ -150,5 +172,6 @@ RSpec.describe Turn do
     #   @computer.pieces == 0
     #   expect(turn.check_winner.draw).to be true
     # end
+
 
 end
