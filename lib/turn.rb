@@ -13,6 +13,7 @@ class Turn
 
     end 
 
+    # LOOP 
     def play_turn 
 
         choose_column(:human)
@@ -50,7 +51,7 @@ class Turn
     end 
 
     def place_token(type)
-
+        if type == :human
         if @choice == "A"
             if @a_count >= 6 
                 puts "This row is filled up. Try another!"
@@ -133,7 +134,7 @@ class Turn
             new_game.start_game
         elsif choice != "A" || choice != "B" || choice != "C" || choice != "D" || choice != "E" || choice != "F" || choice != "G" || choice != "Exit"
             puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
-            self.human_choice
+            # self.human_choice
         end 
 
     @player.pieces -= 1 

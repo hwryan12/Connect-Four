@@ -29,12 +29,11 @@ RSpec.describe Turn do
       computerpieces = Piece.new(:computer)
       player= Player.new(:human, humanpieces)
       computer= Player.new(:computer, computerpieces)
-      turn.choose_column(:human)
       turn.place_token(:human)
       turn.place_token(:computer)
 
       expect(player.pieces).to eq(20)
-      expect(computer.pieces).to eq(21)
+      expect(computer.pieces).to eq(20)
 
     end 
     # it "each player can place a token" do 
