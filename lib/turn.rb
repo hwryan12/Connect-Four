@@ -239,22 +239,26 @@ class Turn
        
     end
     
-    def vertical
-
-        @all_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
-
-        @all_arrays.each do |array|
-            vert_array = array.join("")
-            if vert_array.include?("XXXX")
-                @winner = @player
-            elsif vert_array.include?("OOOO")
-                @winner = @computer
+    def four_in_a_row(array)
+        array.each do |element|
+            new_array = element.join("")
+            if new_array.include?("XXXX")
+                @winner == @player
+            elsif new_array.include?("OOOO")
+                @winner == @computer
             end
         end
-        
     end
-
-    def horizontal
+    
+    def vertical_win?
+        @vert_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
+        
+        if four_in_a_row(@vert_arrays) == true
+            true
+        end
+    end
+    
+    def horizontal_win?
 
         all_arrays = []
         all_arrays << [@board.a[5], @board.b[5], @board.c[5], @board.d[5], @board.e[5], @board.f[5], @board.g[5]] 
@@ -263,18 +267,13 @@ class Turn
         all_arrays << [@board.a[2], @board.b[2], @board.c[2], @board.d[2], @board.e[2], @board.f[2], @board.g[2]] 
         all_arrays << [@board.a[1], @board.b[1], @board.c[1], @board.d[1], @board.e[1], @board.f[1], @board.g[1]] 
         all_arrays << [@board.a[0], @board.b[0], @board.c[0], @board.d[0], @board.e[0], @board.f[0], @board.g[0]] 
-
-        all_arrays.each do |array|
-            horiz_array = array.join("")
-            if horiz_array.include?("XXXX")
-                @winner = @player
-            elsif horiz_array.include?("OOOO")
-                @winner = @computer
-            end
-            end
+        
+        if four_in_a_row(@horiz_arrays) == true
+            true
+        end
     end
 
-    def diagonal
+    def diagonal_win?
         diag_array = []
         diag_array << [@board.a[2], @board.b[3], @board.c[4], @board.d[5]]
         diag_array << [@board.a[1], @board.b[2], @board.c[3], @board.d[4]]
@@ -301,21 +300,18 @@ class Turn
         diag_array << [@board.d[1], @board.c[2], @board.b[3], @board.a[4]]
         diag_array << [@board.d[0], @board.c[1], @board.b[2], @board.a[3]]
 
-        diag_array.each do |array|
-            diag_array2 = array.join("")
-
-            if diag_array2.include?("XXXX")
-                @winner = @player
-
-            elsif diag_array2.include?("OOOO")
-                @winner = @computer
-            end
-            end
+        if four_in_a_row(diag_array) == true
+            true
+        end
     end
 
-    def draw  
+    def draw?
         if @player.pieces == 0 && @computer.pieces == 0
-            @winner == @draw
+            true
+       elsif winner? == true
+            false
+        else
+            false
         end
     end
 
