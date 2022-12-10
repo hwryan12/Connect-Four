@@ -13,57 +13,103 @@ RSpec.describe Turn do
     end
 
 
-    it "the computer will choose one of several random choices" do
+    it "each player starts out with 21 pieces" do
       turn = Turn.new(@board)
-      turn.computer_choice
-      expect(turn.computer_choice).to eq("A" || "B" || "C" || "D" || "E" || "F"|| "G")
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+      
+      expect(player.pieces).to eq(21)
+      expect(computer.pieces).to eq(21)
     end
 
-  # # Does not pass
-  #   xit "can have the human player place the token" do
-    
-  #     turn = Turn.new(@board)
-  #     turn.human_choice.choice == "A"
+    it "after each turn the participants' tokens diminsh by one" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
 
-  #     expect(turn.a_count). to eq(1)
-  #   end 
-  
-  #   # Does not pass
-  #   xit "can determine winner for diagonal" do
-  #     turn = Turn.new(@board)
-  #     turn.diagonal(diagonal_pieces)
+      turn.choose_column(:human)
+      turn.place_token(:human)
+      turn.place_token(:computer)
 
-  #     expect(turn.check_winner)to eq(diagonal)
-  #   end
+      expect(player.pieces).to eq(20)
+      expect(computer.pieces).to eq(20)
+    end
 
-  #  # Does not pass
-  #   xit "can determine winner for vertical" do
-  #     turn = Turn.new(@board)
-  #     turn.vertical(column)
-    
-  #     expect(turn.check_winner)to eq(vertical)
-  #   end
+    it "each player can place a token" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
 
-  #  # Does not pass
-  #   xit "can determine winner for horizontal" do
-  #     turn = Turn.new(@board)
-  #     turn.horizontal(row)
+      turn.place_token(:human)
+      turn.place_token(:computer)
       
-  #     expect(turn.check_winner)to eq(horizontal)
-  #   end
-  
-  #  # Does not pass
-  #   xit "can determine a draw" do
-  #     turn = Turn.new(@board)
-  #     turn.draw(a, b, c, d, e, f)
-    
-  #     expect(turn.check_winner)to eq(draw)
-  #   end
-  
-  #   xit "can determine if four pieces are in a row" do
-  #     turn = Turn.new(@board)
+      # What are we expecting here
+    end
 
-  #     turn.four_in_a_row(pieces)
-  #   end
+    it "can display the board with placed token" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
 
+      turn.choose_column(:human)
+      turn.place_token(:human)
+      turn.place_token(:computer)
+
+      expect(turn.@board.board_grid).to
+      # What are we expecting here
+    end
+
+    it "can check if the player won vertically" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+
+      turn.play_turn
+      expect(turn.check_winner.vertical).to be false
+    end
+  
+    it "can check if the player won horizontally" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+
+      turn.play_turn
+      expect(turn.check_winner.horizontal).to be false
+    end
+  
+    it "can check if the player won diagonally" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+
+      turn.play_turn
+      expect(turn.check_winner.diagonally).to be false
+    end
+
+    it "can check if the game draws" do
+      turn = Turn.new(@board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+
+      @player.pieces == 0
+      @computer.pieces == 0
+      expect(turn.check_winner.draw).to be true
+    end
+  end
 end
