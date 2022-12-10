@@ -13,30 +13,27 @@ class Turn
 
     end 
 
-    # LOOP 
     def play_turn 
 
         choose_column(:human)
         place_token(:human)
-        display_board
-        sleep(1)
-        self.check_winner
-        choose_column(:human)
-        place_token(:human)
-        display_board
+        puts "Your [Human Player] turn:"
+            @board.board_grid
         sleep(1)
         self.check_winner
 
-        # self.computer_choice
-        # sleep(1)
-        # self.check_winner
-        # sleep(1)
-        # self.play_turn
+        choose_column(:computer)
+        place_token(:computer)
+        puts "The Computer's turn:"
+            @board.board_grid
+        sleep(1)
+        self.check_winner
+
     end 
 
     def choose_column(type)
         if type == :human
-            puts "Pick which row you would like to input the next token. Your choices are: 
+            puts "Pick which row you would like to input the next token. Your @choices are: 
                 A
                 B
                 C
@@ -45,195 +42,180 @@ class Turn
                 F
                 G"
             @choice = gets.chomp
-        if type == :computer
+        elsif type == :computer
             @choice = ["A", "B", "C", "D", "E", "F", "G"].sample
         end
     end 
 
     def place_token(type)
+    a_count= 0 
+    b_count = 0
+    c_count = 0
+    d_count = 0 
+    e_count = 0
+    f_count = 0
+    g_count = 0
         if type == :human
-        if @choice == "A"
-            if @a_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
+            if @choice == "A"
+                if a_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
                 else @board.a.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        @a_count += 1 
+                        a_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "B"
-            if @b_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.b.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @b_count += 1 
+            elsif @choice == "B"
+                if b_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.b.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        b_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "C"
-            if @c_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.c.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @c_count += 1 
+            elsif @choice == "C"
+                if c_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.c.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        c_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "D"
-            if @d_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.d.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @d_count += 1 
+            elsif @choice == "D"
+                if d_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.d.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        d_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "E"
-            if @e_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.e.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @e_count += 1 
+            elsif @choice == "E"
+                if e_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.e.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        e_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "F"
-            if @f_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.f.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @f_count += 1 
+            elsif @choice == "F"
+                if f_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.f.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        f_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "G"
-            if @g_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.human_choice
-            else @board.g.find do |letter|
-                if letter == (".")
-                    letter.replace("X")
-                    @g_count += 1 
+            elsif @choice == "G"
+                if g_count >= 6 
+                    puts "This row is filled up. Try another!"
+                    choose_column(:human)
+                else @board.g.find do |letter|
+                    if letter == (".")
+                        letter.replace("X")
+                        g_count += 1 
                     end     
                     end
                 end 
-        elsif choice == "Exit"
-            new_game = Game.new
-            new_game.start_game
-        elsif choice != "A" || choice != "B" || choice != "C" || choice != "D" || choice != "E" || choice != "F" || choice != "G" || choice != "Exit"
-            puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
-            # self.human_choice
+            elsif @choice == "Exit"
+                self.new_game
+            elsif @choice != "A" || @choice != "B" || @choice != "C" || @choice != "D" || @choice != "E" || @choice != "F" || @choice != "G" || @choice != "Exit"
+                puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
+                choose_column(:human)
+            end     
+            
+            @player.pieces -= 1 
+
+        elsif type == :computer
+            if @choice == "A"
+                if a_count >= 6 
+                    choose_column(:computer)
+                else @board.a.find do |letter|
+                    if letter == (".")
+                      letter.replace("O")
+                      a_count += 1 
+                    end     
+                    end
+                end 
+            elsif @choice == "B"
+                if b_count >= 6 
+                    choose_column(:computer)
+                else @board.b.find do |letter|
+                    if letter == (".")
+                      letter.replace("O")
+                      b_count += 1 
+                    end     
+                    end
+                end
+            elsif @choice == "C"
+                if c_count >= 6 
+                    choose_column(:computer)
+                else @board.c.find do |letter|
+                    if letter == (".")
+                      letter.replace("O")
+                      c_count += 1 
+                    end     
+                    end
+                end 
+            elsif @choice == "D"
+                if d_count >= 6 
+                    choose_column(:computer)
+                else @board.d.find do |letter|
+                   if letter == (".")
+                      letter.replace("O")
+                      d_count += 1 
+                    end     
+                    end
+                end 
+            elsif @choice == "E"
+                if e_count >= 6 
+                    choose_column(:computer)
+                else @board.e.find do |letter|
+                   if letter == (".")
+                      letter.replace("O")
+                      e_count += 1 
+                    end     
+                    end
+                end
+            elsif @choice == "F"
+                if f_count >= 6 
+                    choose_column(:computer)
+                else @board.f.find do |letter|
+                   if letter == (".")
+                      letter.replace("O")
+                      f_count += 1 
+                    end     
+                    end
+                end
+            elsif @choice == "G"
+                if g_count >= 6 
+                    choose_column(:computer)
+               else @board.g.find do |letter|
+                   if letter == (".")
+                      letter.replace("O")
+                      g_count += 1 
+                    end     
+                    end
+                end 
+            end 
+            @computer.pieces -= 1 
         end 
-
-    @player.pieces -= 1 
-    sleep(1)
-    puts "Your [Human Player] turn:"
-    @board.board_grid
-
-    end 
-
-    def computer_choice       
-        
-        if choice == "A"
-            if @a_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.a.find do |letter|
-                if letter == (".")
-                  letter.replace("O")
-                  @a_count += 1 
-                end     
-                end
-            end 
-        elsif choice == "B"
-            if @b_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.b.find do |letter|
-                if letter == (".")
-                  letter.replace("O")
-                  @b_count += 1 
-                end     
-                end
-            end
-        elsif choice == "C"
-            if @c_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.c.find do |letter|
-                if letter == (".")
-                  letter.replace("O")
-                  @c_count += 1 
-                end     
-                end
-            end 
-        elsif choice == "D"
-            if @d_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.d.find do |letter|
-               if letter == (".")
-                  letter.replace("O")
-                  @d_count += 1 
-                end     
-                end
-            end 
-        elsif choice == "E"
-            if @e_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.e.find do |letter|
-               if letter == (".")
-                  letter.replace("O")
-                  @e_count += 1 
-                end     
-                end
-            end
-        elsif choice == "F"
-            if @f_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-            else @board.f.find do |letter|
-               if letter == (".")
-                  letter.replace("O")
-                  @f_count += 1 
-                end     
-                end
-            end
-        elsif choice == "G"
-            if @g_count >= 6 
-                puts "This row is filled up. Try another!"
-                self.computer_choice
-           else @board.g.find do |letter|
-               if letter == (".")
-                  letter.replace("O")
-                  @g_count += 1 
-                end     
-                end
-            end 
-        elsif choice == "Exit"
-            game.start_game
-
-        else puts "Your choice is not valid. Please pick again. If you want to exit the game please type Exit" 
-            self.computer_choice
-        end 
-
-        @computer.pieces -= 1 
-        sleep(1)
-        puts "Computer turn:"
-        @board.board_grid
     end 
     
     def check_winner
@@ -241,28 +223,36 @@ class Turn
         self.vertical
         self.horizontal
         self.diagonal
+
         self.draw
+        require 'pry'; binding.pry
+
+
+        if @winner == @computer 
+            puts "The Computer Connected 4-- don't worry, you could one day design a program where you always win!"
+        elsif @winner == @player
+            puts "You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back."
+        elsif @winner == @draw
+            puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
+        else puts "Next Turn"
+        end 
        
     end
     
     def vertical
+
         @all_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
 
         @all_arrays.each do |array|
             vert_array = array.join("")
             if vert_array.include?("XXXX")
-                puts "Connected 4 Vertically!"
-                puts "Player Wins!"
-                new_game = Game.new
-                new_game.start_game
+                @winner = @player
             elsif vert_array.include?("OOOO")
-                puts "Connected 4 Vertically!"
-                puts "The Computer Wins!"
-                new_game = Game.new
-                new_game.start_game
-            end
+                @winner = @computer
             end
         end
+        
+    end
 
     def horizontal
 
@@ -277,15 +267,9 @@ class Turn
         all_arrays.each do |array|
             horiz_array = array.join("")
             if horiz_array.include?("XXXX")
-                puts "Connected 4 Horizontally!"
-                puts "Player Wins!"
-                new_game = Game.new
-                new_game.start_game
+                @winner = @player
             elsif horiz_array.include?("OOOO")
-                puts "Connected 4 Horizontally!"
-                puts "The Computer Wins!"
-                new_game = Game.new
-                new_game.start_game
+                @winner = @computer
             end
             end
     end
@@ -316,29 +300,28 @@ class Turn
         diag_array << [@board.e[1], @board.d[1], @board.c[2], @board.b[3]]
         diag_array << [@board.d[1], @board.c[2], @board.b[3], @board.a[4]]
         diag_array << [@board.d[0], @board.c[1], @board.b[2], @board.a[3]]
+
         diag_array.each do |array|
             diag_array2 = array.join("")
+
             if diag_array2.include?("XXXX")
-                puts "Connected 4 Diagonally!"
-                puts "Player Wins!"
-                new_game = Game.new
-                new_game.start_game
+                @winner = @player
+
             elsif diag_array2.include?("OOOO")
-                puts "Connected 4 Diagonally!"
-                puts "The Computer Wins!"
-                new_game = Game.new
-                new_game.start_game
+                @winner = @computer
             end
             end
     end
 
     def draw  
         if @player.pieces == 0 && @computer.pieces == 0
-            puts "Draw! There's no more pieces."
-            puts "You can try again!"
-            new_game = Game.new
-            new_game.start_game
+            @winner == @draw
         end
+    end
+
+    def new_game 
+        new_game = Game.new
+        new_game.start_game
     end
     
 end
