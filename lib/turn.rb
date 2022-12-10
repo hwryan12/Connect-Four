@@ -239,7 +239,7 @@ class Turn
        
     end
     
-    def four_in_a_row(array)
+    def four_in_a_row
         array.each do |element|
             new_array = element.join("")
             if new_array.include?("XXXX")
@@ -253,11 +253,11 @@ class Turn
     def vertical_win?
         @vert_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
         
-        if four_in_a_row(@vert_arrays) == true
+        if @vert_arrays.four_in_a_row == true
             true
         end
     end
-    
+
     def horizontal_win?
 
         all_arrays = []
@@ -268,7 +268,7 @@ class Turn
         all_arrays << [@board.a[1], @board.b[1], @board.c[1], @board.d[1], @board.e[1], @board.f[1], @board.g[1]] 
         all_arrays << [@board.a[0], @board.b[0], @board.c[0], @board.d[0], @board.e[0], @board.f[0], @board.g[0]] 
         
-        if four_in_a_row(@horiz_arrays) == true
+        if @horiz_arrays.four_in_a_row == true
             true
         end
     end
@@ -300,7 +300,7 @@ class Turn
         diag_array << [@board.d[1], @board.c[2], @board.b[3], @board.a[4]]
         diag_array << [@board.d[0], @board.c[1], @board.b[2], @board.a[3]]
 
-        if four_in_a_row(diag_array) == true
+        if diag_array.four_in_a_row == true
             true
         end
     end
