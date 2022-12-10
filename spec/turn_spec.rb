@@ -12,8 +12,7 @@ RSpec.describe Turn do
     expect(turn).to be_an_instance_of(Turn)
     end
 
-
-    it "each player starts out with 21 pieces" do
+  it "each player starts out with 21 pieces" do
       turn = Turn.new(@board)
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
@@ -24,37 +23,49 @@ RSpec.describe Turn do
       expect(computer.pieces).to eq(21)
     end
 
-    it "each player can place a token" do
-      turn = Turn.new(@board)
+    it "the board by default is empty before anyone plays on a turn" do
+      default_board = Board.new
+      board = Board.new
+      turn = Turn.new(board)
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
       player = Player.new(:human, humanpieces)
       computer = Player.new(:computer, computerpieces)
 
-      turn.place_token(:human)
-      turn.place_token(:computer)
+  require 'pry'; binding.pry
+      expect(board).to eq(default_board)
       
-      expect(board.board_grid).not_to eq()
-      # Come back here to add board rendered
     end
-    
-    it "after each turn the participants' tokens diminsh by one" do
-      turn = Turn.new(@board)
+
+    it "each player can place a token" do
+      board = Board.new
+      turn = Turn.new(board)
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
       player = Player.new(:human, humanpieces)
       computer = Player.new(:computer, computerpieces)
-
-      turn.choose_column(:human)
-      turn.place_token(:human)
       turn.choose_column(:computer)
       turn.place_token(:computer)
-
-      expect(player.pieces).to eq(20)
-      expect(computer.pieces).to eq(20)
+      
+      
+      expect(board).not_to eq(default_board)
+      
     end
 
-    # it "can display the board with placed token" do
+    # it "a token placed in A will increase the count of A by 1" do 
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
+    #   turn.choice = "A"
+    #   turn.place_token(:computer)
+
+    #   expect(a_count).to eq(1)
+
+    # end 
+    
+    # it "after each turn the participants' tokens diminsh by one" do
     #   turn = Turn.new(@board)
     #   humanpieces = Piece.new(:human)
     #   computerpieces = Piece.new(:computer)
@@ -63,65 +74,81 @@ RSpec.describe Turn do
 
     #   turn.choose_column(:human)
     #   turn.place_token(:human)
+    #   turn.choose_column(:computer)
     #   turn.place_token(:computer)
 
-    #   expect(turn.@board.board_grid).to
-    #   # What are we expecting here
+    #   expect(player.pieces).to eq(20)
+    #   expect(computer.pieces).to eq(20)
     # end
 
-        # Needs work
-    it "can check if the player won vertically" do
-      turn = Turn.new(@board)
-      humanpieces = Piece.new(:human)
-      computerpieces = Piece.new(:computer)
-      player = Player.new(:human, humanpieces)
-      computer = Player.new(:computer, computerpieces)
+    # it "a game participant will not be able to place a token in a full column" do 
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
+    #   @a_count = 6
+    #   @choice = "A"
+    #   require 'pry'; binding.pry
 
-      turn.play_turn
-      expect(turn.vertical_win?).to be false
+    #   expect(turn.place_token(:human).choice).to eq("This row is filled up. Try another!")
 
-      four_in_a_row(@vert_arrays) == true
-      expect(turn.vertical_win?).to be true
-    end
+    # end 
+
+
+    #     # Needs work
+    # it "can check if the player won vertically" do
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
+
+    #   turn.play_turn
+    #   expect(turn.vertical_win?).to be false
+
+    #   four_in_a_row(@vert_arrays) == true
+    #   expect(turn.vertical_win?).to be true
+    # end
   
-      it "can check if the player won horizontally" do
-      turn = Turn.new(@board)
-      humanpieces = Piece.new(:human)
-      computerpieces = Piece.new(:computer)
-      player = Player.new(:human, humanpieces)
-      computer = Player.new(:computer, computerpieces)
+    #   it "can check if the player won horizontally" do
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
 
-      turn.play_turn
-      expect(turn.horizontal_win?).to be false
+    #   turn.play_turn
+    #   expect(turn.horizontal_win?).to be false
 
-      four_in_a_row(@horiz_arrays) == true
-      expect(turn.horizontal_win?).to be true
-    end
+    #   four_in_a_row(@horiz_arrays) == true
+    #   expect(turn.horizontal_win?).to be true
+    # end
   
-    it "can check if the player won diagonally" do
-      turn = Turn.new(@board)
-      humanpieces = Piece.new(:human)
-      computerpieces = Piece.new(:computer)
-      player = Player.new(:human, humanpieces)
-      computer = Player.new(:computer, computerpieces)
+    # it "can check if the player won diagonally" do
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
 
-      turn.play_turn
-      expect(turn.diagonal_win?).to be false
+    #   turn.play_turn
+    #   expect(turn.diagonal_win?).to be false
 
-      four_in_a_row(@diag_arrays) == true
-      expect(turn.diagonal_win?).to be true
-    end
+    #   four_in_a_row(@diag_arrays) == true
+    #   expect(turn.diagonal_win?).to be true
+    # end
 
-    it "can check if the game draws" do
-      turn = Turn.new(@board)
-      humanpieces = Piece.new(:human)
-      computerpieces = Piece.new(:computer)
-      player = Player.new(:human, humanpieces)
-      computer = Player.new(:computer, computerpieces)
+    # it "can check if the game draws" do
+    #   turn = Turn.new(@board)
+    #   humanpieces = Piece.new(:human)
+    #   computerpieces = Piece.new(:computer)
+    #   player = Player.new(:human, humanpieces)
+    #   computer = Player.new(:computer, computerpieces)
 
-      @player.pieces == 0
-      @computer.pieces == 0
-      expect(turn.check_winner.draw).to be true
-    end
-  end
+    #   @player.pieces == 0
+    #   @computer.pieces == 0
+    #   expect(turn.check_winner.draw).to be true
+    # end
+
 end

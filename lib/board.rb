@@ -27,7 +27,7 @@ class Board
 
   end
 
-  def board_grid #printed version
+  def board_grid
 
     letters = ["A", "B", "C", "D", "E", "F", "G"]
     puts letters.join(' ')

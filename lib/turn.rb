@@ -1,5 +1,5 @@
 class Turn 
-    attr_reader :turn 
+    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :choice, :board 
 
     def initialize(board)
         @board = board
@@ -10,30 +10,36 @@ class Turn
         @player = player
         @computer = computer
         @choice = nil
-
+        @a_count = 0 
+        @b_count = 0
+        @c_count = 0
+        @d_count = 0 
+        @e_count = 0
+        @f_count = 0
+        @g_count = 0
     end 
 
     def play_turn 
 
         choose_column(:human)
         place_token(:human)
-        puts "Your [Human Player] turn:"
-            @board.board_grid
-        sleep(1)
-        self.check_winner
+        # puts "Your [Human Player] turn:"
+        #     @board.board_grid
+        # sleep(1)
+        # self.check_winner
 
         choose_column(:computer)
         place_token(:computer)
-        puts "The Computer's turn:"
-            @board.board_grid
-        sleep(1)
-        self.check_winner
+        # puts "The Computer's turn:"
+        #     @board.board_grid
+        # sleep(1)
+        # self.check_winner
 
     end 
 
     def choose_column(type)
         if type == :human
-            puts "Pick which row you would like to input the next token. Your @choices are: 
+            puts "Pick which row you would like to input the next token. Your choices are: 
                 A
                 B
                 C
@@ -48,22 +54,16 @@ class Turn
     end 
 
     def place_token(type)
-    a_count= 0 
-    b_count = 0
-    c_count = 0
-    d_count = 0 
-    e_count = 0
-    f_count = 0
-    g_count = 0
+
         if type == :human
             if @choice == "A"
-                if a_count >= 6 
+                if @a_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
                 else @board.a.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        a_count += 1 
+                        @a_count += 1 
                     end     
                     end
                 end 
@@ -115,6 +115,7 @@ class Turn
                 if f_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
+                    require 'pry'; binding.pry
                 else @board.f.find do |letter|
                     if letter == (".")
                         letter.replace("X")
@@ -144,72 +145,72 @@ class Turn
 
         elsif type == :computer
             if @choice == "A"
-                if a_count >= 6 
+                if @a_count >= 6 
                     choose_column(:computer)
                 else @board.a.find do |letter|
                     if letter == (".")
                       letter.replace("O")
-                      a_count += 1 
+                      @a_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "B"
-                if b_count >= 6 
+                if @b_count >= 6 
                     choose_column(:computer)
                 else @board.b.find do |letter|
                     if letter == (".")
                       letter.replace("O")
-                      b_count += 1 
+                      @b_count += 1 
                     end     
                     end
                 end
             elsif @choice == "C"
-                if c_count >= 6 
+                if @c_count >= 6 
                     choose_column(:computer)
                 else @board.c.find do |letter|
                     if letter == (".")
                       letter.replace("O")
-                      c_count += 1 
+                      @c_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "D"
-                if d_count >= 6 
+                if @d_count >= 6 
                     choose_column(:computer)
                 else @board.d.find do |letter|
                    if letter == (".")
                       letter.replace("O")
-                      d_count += 1 
+                      @d_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "E"
-                if e_count >= 6 
+                if @e_count >= 6 
                     choose_column(:computer)
                 else @board.e.find do |letter|
                    if letter == (".")
                       letter.replace("O")
-                      e_count += 1 
+                      @e_count += 1 
                     end     
                     end
                 end
             elsif @choice == "F"
-                if f_count >= 6 
+                if @f_count >= 6 
                     choose_column(:computer)
                 else @board.f.find do |letter|
                    if letter == (".")
                       letter.replace("O")
-                      f_count += 1 
+                      @f_count += 1 
                     end     
                     end
                 end
             elsif @choice == "G"
-                if g_count >= 6 
+                if @g_count >= 6 
                     choose_column(:computer)
                else @board.g.find do |letter|
                    if letter == (".")
                       letter.replace("O")
-                      g_count += 1 
+                      @g_count += 1 
                     end     
                     end
                 end 
@@ -220,10 +221,9 @@ class Turn
     
     def check_winner
 
-        self.vertical
-        self.horizontal
-        self.diagonal
-
+        self.vertical_win?
+        self.horizontal_win?
+        self.diagonal_win?
         self.draw
         require 'pry'; binding.pry
 
@@ -240,20 +240,25 @@ class Turn
     end
     
     def four_in_a_row(array)
+       new_array = []
+       require 'pry'; binding.pry
         array.each do |element|
-            new_array = element.join("")
+            new_array << element.join("")
             if new_array.include?("XXXX")
-                @winner == @player
-            elsif new_array.include?("OOOO")
-                @winner == @computer
+                true 
+            else false 
+            end 
+            if new_array.include?("OOOO")
+                true
+            else false
             end
         end
     end
     
     def vertical_win?
-        @vert_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
+        vert_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
         
-        if four_in_a_row(@vert_arrays) == true
+        if self.four_in_a_row(vert_arrays) == true
             true
         end
     end
