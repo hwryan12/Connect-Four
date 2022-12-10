@@ -78,11 +78,13 @@ RSpec.describe Turn do
       computer = Player.new(:computer, computerpieces)
 
       turn.play_turn
-      expect(turn.check_winner.vertical).to be false
+      expect(turn.vertical_win?).to be false
+
+      four_in_a_row(@vert_arrays) == true
+      expect(turn.vertical_win?).to be true
     end
   
-        # Needs work
-    it "can check if the player won horizontally" do
+      it "can check if the player won horizontally" do
       turn = Turn.new(@board)
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
@@ -90,10 +92,12 @@ RSpec.describe Turn do
       computer = Player.new(:computer, computerpieces)
 
       turn.play_turn
-      expect(turn.check_winner.horizontal).to be false
+      expect(turn.horizontal_win?).to be false
+
+      four_in_a_row(@horiz_arrays) == true
+      expect(turn.horizontal_win?).to be true
     end
   
-    # Needs work
     it "can check if the player won diagonally" do
       turn = Turn.new(@board)
       humanpieces = Piece.new(:human)
@@ -102,7 +106,10 @@ RSpec.describe Turn do
       computer = Player.new(:computer, computerpieces)
 
       turn.play_turn
-      expect(turn.check_winner.diagonally).to be false
+      expect(turn.diagonal_win?).to be false
+
+      four_in_a_row(@diag_arrays) == true
+      expect(turn.diagonal_win?).to be true
     end
 
     it "can check if the game draws" do
