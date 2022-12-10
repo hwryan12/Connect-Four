@@ -8,16 +8,16 @@ RSpec.describe Board do
     expect(board).to be_an_instance_of(Board)
   end
 
-  it "the connectfour grid is made up of several arrays" do 
+  it "the connectfour grid is made up of one hash named board that prints like a Connect 4 grid" do 
     board = Board.new 
+    expect(board.board_grid).to eq("A": ["A", "A1", "A", "A", "A", "A"], 
+      "B": ["B", "B1", "B", "B", "B", "B"],  
+      "C": ["C", "C1", "C", "C", "C", "C"],
+      "D": ["D", "D1", "D", "D", "D", "D"], 
+      "E": ["E", "E1", "E", "e", "E", "E"], 
+      "F": ["F", "F1", "F", "F", "F", "F"],
+      "G": ["G", "G1", "G", "G", "G", "G"])
 
-    expect(board.a).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.b).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.c).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.d).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.e).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.f).to eq([".", ".", ".", ".", ".", "."])
-    expect(board.g).to eq([".", ".", ".", ".", ".", "."])
   end 
 
 end
