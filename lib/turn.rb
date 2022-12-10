@@ -1,5 +1,6 @@
 class Turn 
-    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :choice, :board 
+    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :board 
+    attr_accessor :choice
 
     def initialize(board)
         @board = board
@@ -23,17 +24,17 @@ class Turn
 
         choose_column(:human)
         place_token(:human)
-        # puts "Your [Human Player] turn:"
-        #     @board.board_grid
-        # sleep(1)
-        # self.check_winner
+        puts "Your [Human Player] turn:"
+            @board.board_grid
+        sleep(1)
+        self.check_winner
 
         choose_column(:computer)
         place_token(:computer)
-        # puts "The Computer's turn:"
-        #     @board.board_grid
-        # sleep(1)
-        # self.check_winner
+        puts "The Computer's turn:"
+            @board.board_grid
+        sleep(1)
+        self.check_winner
 
     end 
 
@@ -57,10 +58,12 @@ class Turn
 
         if type == :human
             if @choice == "A"
+                # require 'pry'; binding.pry
                 if @a_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.a.find do |letter|
+                    # require 'pry'; binding.pry
+                else @board.board[:A].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
                         @a_count += 1 
@@ -68,69 +71,69 @@ class Turn
                     end
                 end 
             elsif @choice == "B"
-                if b_count >= 6 
+                if @b_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.b.find do |letter|
+                else @board.board[:B].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        b_count += 1 
+                        @b_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "C"
-                if c_count >= 6 
+                if @c_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.c.find do |letter|
+                else @board.board[:C].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        c_count += 1 
+                        @c_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "D"
-                if d_count >= 6 
+                if @d_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.d.find do |letter|
+                else @board.board[:D].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        d_count += 1 
+                        @d_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "E"
-                if e_count >= 6 
+                if @e_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.e.find do |letter|
+                else @board.board[:E].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        e_count += 1 
+                        @e_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "F"
-                if f_count >= 6 
+                if @f_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                    require 'pry'; binding.pry
-                else @board.f.find do |letter|
+                    # require 'pry'; binding.pry
+                else @board.board[:F].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        f_count += 1 
+                        @f_count += 1 
                     end     
                     end
                 end 
             elsif @choice == "G"
-                if g_count >= 6 
+                if @g_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                else @board.g.find do |letter|
+                else @board.board[:G].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
-                        g_count += 1 
+                        @g_count += 1 
                     end     
                     end
                 end 
@@ -147,7 +150,7 @@ class Turn
             if @choice == "A"
                 if @a_count >= 6 
                     choose_column(:computer)
-                else @board.a.find do |letter|
+                else @board.board[:A].reverse.find do |letter|
                     if letter == (".")
                       letter.replace("O")
                       @a_count += 1 
@@ -157,7 +160,7 @@ class Turn
             elsif @choice == "B"
                 if @b_count >= 6 
                     choose_column(:computer)
-                else @board.b.find do |letter|
+                else @board.board[:B].reverse.find do |letter|
                     if letter == (".")
                       letter.replace("O")
                       @b_count += 1 
@@ -167,7 +170,7 @@ class Turn
             elsif @choice == "C"
                 if @c_count >= 6 
                     choose_column(:computer)
-                else @board.c.find do |letter|
+                else @board.board[:C].reverse.find do |letter|
                     if letter == (".")
                       letter.replace("O")
                       @c_count += 1 
@@ -177,7 +180,7 @@ class Turn
             elsif @choice == "D"
                 if @d_count >= 6 
                     choose_column(:computer)
-                else @board.d.find do |letter|
+                else @board.board[:D].reverse.find do |letter|
                    if letter == (".")
                       letter.replace("O")
                       @d_count += 1 
@@ -187,7 +190,7 @@ class Turn
             elsif @choice == "E"
                 if @e_count >= 6 
                     choose_column(:computer)
-                else @board.e.find do |letter|
+                else @board.board[:E].reverse.find do |letter|
                    if letter == (".")
                       letter.replace("O")
                       @e_count += 1 
@@ -197,7 +200,7 @@ class Turn
             elsif @choice == "F"
                 if @f_count >= 6 
                     choose_column(:computer)
-                else @board.f.find do |letter|
+                else @board.board[:F].reverse.find do |letter|
                    if letter == (".")
                       letter.replace("O")
                       @f_count += 1 
@@ -207,7 +210,7 @@ class Turn
             elsif @choice == "G"
                 if @g_count >= 6 
                     choose_column(:computer)
-               else @board.g.find do |letter|
+               else @board.board[:G].reverse.find do |letter|
                    if letter == (".")
                       letter.replace("O")
                       @g_count += 1 
@@ -225,7 +228,7 @@ class Turn
         self.horizontal_win?
         self.diagonal_win?
         self.draw
-        require 'pry'; binding.pry
+        # require 'pry'; binding.pry
 
 
         if @winner == @computer 
@@ -239,20 +242,21 @@ class Turn
        
     end
     
-
-    # def four_in_a_row(array)
-    #     array.each do |element|
-    #         new_array = element.join("")
-    #         if new_array.include?("XXXX")
-    #             @winner == @player
-    #         elsif new_array.include?("OOOO")
-    #             @winner == @computer
-       
-    #         end
-    #     end
-
-    # end
-    
+    def four_in_a_row(array)
+       new_array = []
+    #    require 'pry'; binding.pry
+        array.each do |element|
+            new_array << element.join("")
+            if new_array.include?("XXXX")
+                true 
+            else false 
+            end 
+            if new_array.include?("OOOO")
+                true
+            else false
+            end
+        end
+    end
     
     def vertical_win?
         # require 'pry'; binding.pry

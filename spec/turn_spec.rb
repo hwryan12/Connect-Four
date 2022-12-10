@@ -25,16 +25,21 @@ RSpec.describe Turn do
 
 
     it "the board by default is empty before anyone plays on a turn" do
-      default_board = Board.new
       board = Board.new
       turn = Turn.new(board)
       humanpieces = Piece.new(:human)
       computerpieces = Piece.new(:computer)
       player = Player.new(:human, humanpieces)
       computer = Player.new(:computer, computerpieces)
+      empty_board = {"A": [".", ".", ".", ".", ".", "."], 
+        "B": [".", ".", ".", ".", ".", "."],  
+        "C": [".", ".", ".", ".", ".", "."],
+        "D": [".", ".", ".", ".", ".", "."], 
+        "E": [".", ".", ".", ".", ".", "."], 
+        "F": [".", ".", ".", ".", ".", "."],
+        "G": [".", ".", ".", ".", ".", "."]}
 
-  require 'pry'; binding.pry
-      expect(board).to eq(default_board)
+      expect(board.board).to eq(empty_board)
       
     end
 
@@ -65,24 +70,32 @@ RSpec.describe Turn do
       computer = Player.new(:computer, computerpieces)
       turn.choose_column(:computer)
       turn.place_token(:computer)
+      empty_board = {"A": [".", ".", ".", ".", ".", "."], 
+      "B": [".", ".", ".", ".", ".", "."],  
+      "C": [".", ".", ".", ".", ".", "."],
+      "D": [".", ".", ".", ".", ".", "."], 
+      "E": [".", ".", ".", ".", ".", "."], 
+      "F": [".", ".", ".", ".", ".", "."],
+      "G": [".", ".", ".", ".", ".", "."]}
       
-      
-      expect(board).not_to eq(default_board)
+      expect(board.board).not_to eq(empty_board)
       
     end
 
-    # it "a token placed in A will increase the count of A by 1" do 
-    #   turn = Turn.new(@board)
-    #   humanpieces = Piece.new(:human)
-    #   computerpieces = Piece.new(:computer)
-    #   player = Player.new(:human, humanpieces)
-    #   computer = Player.new(:computer, computerpieces)
-    #   turn.choice = "A"
-    #   turn.place_token(:computer)
 
-    #   expect(a_count).to eq(1)
+    it "a token placed in A will increase the count of A by 1" do 
+      board = Board.new
+      turn = Turn.new(board)
+      humanpieces = Piece.new(:human)
+      computerpieces = Piece.new(:computer)
+      player = Player.new(:human, humanpieces)
+      computer = Player.new(:computer, computerpieces)
+      turn.choice = "A"
+      turn.place_token(:computer)
 
-    # end 
+      expect(turn.a_count).to eq(1)
+
+    end 
     
     # it "after each turn the participants' tokens diminsh by one" do
     #   turn = Turn.new(@board)
