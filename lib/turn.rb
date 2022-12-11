@@ -1,5 +1,5 @@
 class Turn 
-    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :board, :computer, :player 
+    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :board, :computer, :player, :victor 
     attr_accessor :choice
 
     def initialize(board)
@@ -27,6 +27,9 @@ class Turn
             @board.board_grid
         sleep(1)
         self.check_winner
+        if @victor != nil 
+            self.new_game
+        end
 
         choose_column(:computer)
         place_token(:computer)
@@ -34,6 +37,9 @@ class Turn
             @board.board_grid
         sleep(1)
         self.check_winner
+        if @victor != nil 
+            self.new_game
+        end
 
     end 
 
@@ -220,37 +226,40 @@ class Turn
     end 
     
     def check_winner
-        require 'pry'; binding.pry
+        # require 'pry'; binding.pry
+        draw
         vertical_win
         horizontal_win
         diagonal_win
-        draw
+        # require 'pry'; binding.pry
+
 
         if @victor != nil 
             print_winner(@victor)
-            self.new_game
         end
     end 
 
     def draw  
+        # require 'pry'; binding.pry
         if @player.pieces == 0 && @computer.pieces == 0
             puts "Draw! There's no more pieces."
             puts "You can try again!"
-            @victor == "draw"
+            @victor = "draw"
         end
+        # require 'pry'; binding.pry
     end
 
     def print_winner(victor)
         # require 'pry'; binding.pry
-        if victor == @computer
+        if victor == "draw"
+            puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something." 
+            "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
+        elsif victor == @computer
             puts "The Computer Connected 4-- don't worry, you could one day design a program where you always win!" 
             "The Computer Connected 4-- don't worry, you could one day design a program where you always win!"
         elsif victor == @player
             puts "You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back." 
             "You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back."
-        elsif victor == "draw"
-            puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something." 
-            "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
         end 
     end
     
@@ -262,11 +271,11 @@ class Turn
             if vert_array.include?("XXXX")
                 puts "Connected 4 Vertically!"
                 puts "Player Wins!"
-                @victor = "human"
+                @victor = @player
             elsif vert_array.include?("OOOO")
                 puts "Connected 4 Vertically!"
                 puts "The Computer Wins!"
-                @victor = "computer"
+                @victor = @computer
             end
         end
     end

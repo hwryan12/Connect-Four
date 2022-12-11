@@ -124,7 +124,6 @@ RSpec.describe Turn do
        expect(board.board).to eq(transformed_board)
             
     end
-    # EVERYTHING BELOW HERE WE STILL NEED TO GET TO RUN 
 
     it "it will print a message for the computer winner" do 
       board = Board.new
@@ -148,28 +147,149 @@ RSpec.describe Turn do
       expect(turn.print_winner("draw")).to eq("This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something.")
     end
 
+    it "if neither player has any pieces, the victor will be a draw " do 
+      board = Board.new
+      turn = Turn.new(board)
+      turn.player.pieces = 0
+      turn.computer.pieces = 0
+      turn.check_winner
+
+      expect(turn.victor).to eq("draw")
+    end
+
+
+        # EVERYTHING BELOW HERE WE STILL NEED TO GET TO RUN 
+
+        # VERTICAL WIN
+
     it "if four XXXXs are connected vertically, the player is declared the victor" do 
 
+      board = Board.new
+      turn = Turn.new(board)
+      turn.vertical_win.vert_array = "..XXXX."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@player)
     end
 
     it "if four OOOOs are connected vertically, the computer is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.vertical_win.vert_array = "..OOOO."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
       
+    end
+
+    it "Round 2 with different placement of XXXXs: if four XXXXs are connected vertically, the player is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.vertical_win.vert_array = "XXXX..."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@player)
+    end
+
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected vertically, the computer is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.vertical_win.vert_array = "OOOO..."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
+      
+    end
+
+    # HORIZONTAL WINS
+
+    it "if four OOOOs are connected horizontally, the computer is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "OOOO..."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
+
     end
 
     it "if four XXXXs are connected horizontally, the player is declared the victor" do 
 
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "XXXX..."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
+
     end
 
-    it "if four OOOOs are connected horizontally, the player is declared the victor" do 
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected horizontally, the computer is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "..OOOO."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
+
+    end
+
+    it "Round 2 with different placement of XXXXs:if four XXXXs are connected horizontally, the player is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "...XXXX"
+      turn.check_winner
+
+      expect(turn.victor).to eq(@player)
 
     end
 
     it "if four XXXXs are connected diagonally, the player is declared the victor" do 
 
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "...XXXX"
+      turn.check_winner
+
+      expect(turn.victor).to eq(@player)
+
     end
 
-    it "if four OOOOs are connected diagonally, the player is declared the victor" do 
+    it "if four OOOOs are connected diagonally, the computer is declared the victor" do 
 
+      board = Board.new
+      turn = Turn.new(board)
+      turn.diagonal_win.diag_array = "...XXXX"
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
+    end
+
+    it "Round 2 with different placement of XXXXs: if four XXXXs are connected diagonally, the player is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.horizontal_win.horiz_array_to_check = "..XXXX."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@player)
+
+    end
+
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected diagonally, the computer is declared the victor" do 
+
+      board = Board.new
+      turn = Turn.new(board)
+      turn.diagonal_win.diag_array = "..OOOO."
+      turn.check_winner
+
+      expect(turn.victor).to eq(@computer)
     end
 
 end
