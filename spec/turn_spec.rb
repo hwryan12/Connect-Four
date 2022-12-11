@@ -185,113 +185,138 @@ RSpec.describe Turn do
       
     end
 
-    xit "Round 2 with different placement of XXXXs: if four XXXXs are connected vertically, the player is declared the victor" do 
+    it "Round 2 with different placement of XXXXs: if four XXXXs are connected vertically, the player is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.vertical_win.vert_array = "XXXX..."
+      turn.board.board[:B] = ["X", "X", "X", "X", ".", "."]
       turn.check_winner
 
-      expect(turn.victor).to eq(@player)
+      expect(turn.victor).to eq(turn.player)
     end
 
-    xit "Round 2 with different placement of OOOOs: if four OOOOs are connected vertically, the computer is declared the victor" do 
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected vertically, the computer is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.vertical_win.vert_array = "OOOO..."
+      turn.board.board[:B] = ["O", "O", "O", "O", ".", "."]
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.computer)
       
     end
 
     # HORIZONTAL WINS
 
-    xit "if four OOOOs are connected horizontally, the computer is declared the victor" do 
+    it "if four OOOOs are connected horizontally, the computer is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "OOOO..."
+      
+      turn.board.board[:A][5] = "O"
+      turn.board.board[:B][5] = "O"
+      turn.board.board[:C][5] = "O"
+      turn.board.board[:D][5] = "O"
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.computer)
 
     end
 
-    xit "if four XXXXs are connected horizontally, the player is declared the victor" do 
+    it "if four XXXXs are connected horizontally, the player is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "XXXX..."
+      turn.board.board[:A][5] = "X"
+      turn.board.board[:B][5] = "X"
+      turn.board.board[:C][5] = "X"
+      turn.board.board[:D][5] = "X"
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.player)
 
     end
 
-    xit "Round 2 with different placement of OOOOs: if four OOOOs are connected horizontally, the computer is declared the victor" do 
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected horizontally, the computer is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "..OOOO."
+      turn.board.board[:D][2] = "O"
+      turn.board.board[:E][2] = "O"
+      turn.board.board[:F][2] = "O"
+      turn.board.board[:G][2] = "O"
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.computer)
 
     end
 
-    xit "Round 2 with different placement of XXXXs:if four XXXXs are connected horizontally, the player is declared the victor" do 
+    it "Round 2 with different placement of XXXXs:if four XXXXs are connected horizontally, the player is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "...XXXX"
+      turn.board.board[:D][2] = "X"
+      turn.board.board[:E][2] = "X"
+      turn.board.board[:F][2] = "X"
+      turn.board.board[:G][2] = "X"
       turn.check_winner
 
-      expect(turn.victor).to eq(@player)
+      expect(turn.victor).to eq(turn.player)
 
     end
 
-    xit "if four XXXXs are connected diagonally, the player is declared the victor" do 
+    it "if four XXXXs are connected diagonally, the player is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "...XXXX"
+      turn.board.board[:A][2] = "X"
+      turn.board.board[:B][3] = "X"
+      turn.board.board[:C][4] = "X"
+      turn.board.board[:D][5] = "X"
       turn.check_winner
 
-      expect(turn.victor).to eq(@player)
+      expect(turn.victor).to eq(turn.player)
 
     end
 
-    xit "if four OOOOs are connected diagonally, the computer is declared the victor" do 
+    it "if four OOOOs are connected diagonally, the computer is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.diagonal_win.diag_array = "...XXXX"
+      turn.board.board[:A][2] = "O"
+      turn.board.board[:B][3] = "O"
+      turn.board.board[:C][4] = "O"
+      turn.board.board[:D][5] = "O"
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.computer)
     end
 
-    xit "Round 2 with different placement of XXXXs: if four XXXXs are connected diagonally, the player is declared the victor" do 
+    it "Round 2 with different placement of XXXXs: if four XXXXs are connected diagonally, the player is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.horizontal_win.horiz_array_to_check = "..XXXX."
+      turn.board.board[:G][0] = "X"
+      turn.board.board[:F][1] = "X" 
+      turn.board.board[:E][2] = "X" 
+      turn.board.board[:D][3] = "X"
       turn.check_winner
 
-      expect(turn.victor).to eq(@player)
+      expect(turn.victor).to eq(turn.player)
 
     end
 
-    xit "Round 2 with different placement of OOOOs: if four OOOOs are connected diagonally, the computer is declared the victor" do 
+    it "Round 2 with different placement of OOOOs: if four OOOOs are connected diagonally, the computer is declared the victor" do 
 
       board = Board.new
       turn = Turn.new(board)
-      turn.diagonal_win.diag_array = "..OOOO."
+      turn.board.board[:G][0] = "O"
+      turn.board.board[:F][1] = "O" 
+      turn.board.board[:E][2] = "O" 
+      turn.board.board[:D][3] = "O"
       turn.check_winner
 
-      expect(turn.victor).to eq(@computer)
+      expect(turn.victor).to eq(turn.computer)
     end
 
 end

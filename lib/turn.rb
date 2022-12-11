@@ -229,7 +229,7 @@ class Turn
         draw
         vertical_win
         horizontal_win
-        # diagonal_win
+        diagonal_win
         # require 'pry'; binding.pry
 
 
@@ -339,12 +339,12 @@ class Turn
         diag_array << [@board.board[:D][0], @board.board[:C][1], @board.board[:B][2], @board.board[:A][3]]
 
         diag_array.each do |array|
-            diag_array2 = array.join("")
-            if diag_array2.include?("XXXX")
+            diag_array_to_check = array.join("")
+            if diag_array_to_check.include?("XXXX")
                 puts "Connected 4 Diagonally!"
                 puts "Player Wins!"
                 @victor = @player
-            elsif diag_array2.include?("OOOO")
+            elsif diag_array_to_check.include?("OOOO")
                 puts "Connected 4 Diagonally!"
                 puts "The Computer Wins!"
                 @victor = @computer
