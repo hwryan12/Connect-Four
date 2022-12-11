@@ -1,6 +1,17 @@
 class Turn 
-    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :board, :computer
-    attr_accessor :choice, :victor, :player 
+    attr_reader :turn, 
+                :a_count, 
+                :b_count, 
+                :c_count, 
+                :d_count, 
+                :e_count, 
+                :f_count, 
+                :g_count, 
+                :board, 
+                :computer
+    attr_accessor :choice, 
+                  :victor, 
+                  :player 
 
     def initialize(board)
         @board = board
@@ -40,7 +51,7 @@ class Turn
         if @victor != nil 
             self.new_game
         end
-
+        play_turn
     end 
 
     def choose_column(type)
@@ -225,31 +236,25 @@ class Turn
     end 
     
     def check_winner
-        # require 'pry'; binding.pry
         draw
         vertical_win
         horizontal_win
         diagonal_win
-        # require 'pry'; binding.pry
-
-
+        
         if @victor != nil 
             print_winner(@victor)
         end
     end 
 
     def draw  
-        # require 'pry'; binding.pry
         if @player.pieces == 0 && @computer.pieces == 0
             puts "Draw! There's no more pieces."
             puts "You can try again!"
             @victor = "draw"
         end
-        # require 'pry'; binding.pry
     end
 
     def print_winner(victor)
-        # require 'pry'; binding.pry
         if victor == "draw"
             puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something." 
             "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
@@ -265,9 +270,9 @@ class Turn
     def vertical_win
         @all_arrays = [@board.board[:A], @board.board[:B], @board.board[:C], @board.board[:D], 
                         @board.board[:E], @board.board[:F], @board.board[:G]]
-
+            
         @all_arrays.each do |array|
-            vert_array = array.join("")
+        vert_array = array.join("")
             if vert_array.include?("XXXX")
                 puts "Connected 4 Vertically!"
                 puts "Player Wins!"
@@ -281,7 +286,6 @@ class Turn
     end
 
     def horizontal_win
-        # require "pry"; binding.pry
         horizontal_arrays = []
         horizontal_arrays << [@board.board[:A][5], @board.board[:B][5], @board.board[:C][5], @board.board[:D][5], 
                             @board.board[:E][5], @board.board[:F][5], @board.board[:G][5]] 
@@ -295,10 +299,9 @@ class Turn
                             @board.board[:E][1], @board.board[:F][1], @board.board[:G][1]] 
         horizontal_arrays << [@board.board[:A][0], @board.board[:B][0], @board.board[:C][0], @board.board[:D][0], 
                             @board.board[:E][0], @board.board[:F][0], @board.board[:G][0]] 
-      
-        
+       
         horizontal_arrays.each do |array|
-            horiz_array_to_check = array.join("")
+        horiz_array_to_check = array.join("")
             if horiz_array_to_check.include?("XXXX")
                 puts "Connected 4 Horizontally!"
                 puts "Player Wins!"
@@ -339,7 +342,7 @@ class Turn
         diag_array << [@board.board[:D][0], @board.board[:C][1], @board.board[:B][2], @board.board[:A][3]]
 
         diag_array.each do |array|
-            diag_array_to_check = array.join("")
+        diag_array_to_check = array.join("")
             if diag_array_to_check.include?("XXXX")
                 puts "Connected 4 Diagonally!"
                 puts "Player Wins!"
@@ -356,5 +359,4 @@ class Turn
         new_game = Game.new
         new_game.start_game
     end
-    
 end
