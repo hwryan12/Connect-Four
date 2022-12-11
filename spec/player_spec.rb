@@ -13,18 +13,28 @@ RSpec.describe Piece do
     
   end
 
-  it "the player has a type" do 
+  it "the human player has a type" do 
     humanpieces = Piece.new(:human)
     player= Player.new(:human, humanpieces)
 
     expect(player.type).to eq(:human)
   end
 
-  it "the player comes with 21 pieces" do 
+  it "the computer player has their own type" do 
+    computerpieces = Piece.new(:computer)
+    computer= Player.new(:computer, computerpieces)
+
+    expect(computer.type).to eq(:computer)
+  end
+
+  it "each participant starts with 21 pieces" do 
     humanpieces = Piece.new(:human)
     player= Player.new(:human, humanpieces)
+    computerpieces = Piece.new(:computer)
+    computer= Player.new(:computer, computerpieces)
 
     expect(player.pieces).to eq(21)
+    expect(computer.pieces).to eq(21)
   end
 
 end 
