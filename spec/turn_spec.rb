@@ -293,4 +293,33 @@ RSpec.describe Turn do
 
     expect(turn.victor).to eq(turn.computer)
   end
+
+  it "Can play a game of Connect Four" do
+    board = Board.new
+    turn = Turn.new(board)
+    
+    turn.choice = "A"
+    turn.place_token(:human)
+    turn.check_winner
+    turn.choice = "B"
+    turn.place_token(:computer)
+    turn.check_winner
+    turn.choice = "A"
+    turn.place_token(:human)
+    turn.check_winner
+    turn.choice = "E"
+    turn.place_token(:computer)
+    turn.check_winner
+    turn.choice = "A"
+    turn.place_token(:human)
+    turn.check_winner
+    turn.choice = "F"
+    turn.place_token(:computer)
+    turn.check_winner
+    turn.choice = "A"
+    turn.place_token(:human)
+    turn.check_winner
+
+    expect(turn.victor).to eq(turn.player)
+  end
 end
