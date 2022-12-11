@@ -21,21 +21,21 @@ RSpec.describe Turn do
       
       expect(player.pieces).to eq(21)
       expect(computer.pieces).to eq(21)
-    end
+  end
 
-    it "each turn creates the pieces and the players" do 
-      board = Board.new
-      turn = Turn.new(board)
+  it "each turn creates the pieces and the players" do 
+    board = Board.new
+    turn = Turn.new(board)
 
-      expect(turn.instance_variables).to include(:@humanpieces, :@computerpieces, :@player, :@computer, :@a_count, :@b_count, :@c_count, :@d_count, :@e_count, :@f_count, :@g_count, :@board)
-    end
+    expect(turn.instance_variables).to include(:@humanpieces, :@computerpieces, :@player, :@computer, :@a_count, :@b_count, :@c_count, :@d_count, :@e_count, :@f_count, :@g_count, :@board)
+  end
 
 
-    it "the board by default is empty before anyone plays on a turn" do
-      board = Board.new
-      turn = Turn.new(board)
+  it "the board by default is empty before anyone plays on a turn" do
+    board = Board.new
+    turn = Turn.new(board)
 
-      empty_board = {"A": [".", ".", ".", ".", ".", "."], 
+    empty_board = {"A": [".", ".", ".", ".", ".", "."], 
         "B": [".", ".", ".", ".", ".", "."],  
         "C": [".", ".", ".", ".", ".", "."],
         "D": [".", ".", ".", ".", ".", "."], 
@@ -43,39 +43,37 @@ RSpec.describe Turn do
         "F": [".", ".", ".", ".", ".", "."],
         "G": [".", ".", ".", ".", ".", "."]}
 
-      expect(board.board).to eq(empty_board)
-      
-    end
+    expect(board.board).to eq(empty_board)
+  end
 
-    it "a token placed in A will increase the count of A by 1" do 
-      board = Board.new
-      turn = Turn.new(board)
+  it "a token placed in A will increase the count of A by 1" do 
+    board = Board.new
+    turn = Turn.new(board)
 
-      turn.choice = "A"
-      turn.place_token(:computer)
+    turn.choice = "A"
+    turn.place_token(:computer)
 
-      expect(turn.a_count).to eq(1)
+    expect(turn.a_count).to eq(1)
+  end 
 
-    end 
+  it "a token placed in D will increase the count of A by 1" do 
+    board = Board.new
+    turn = Turn.new(board)
 
-    it "a token placed in D will increase the count of A by 1" do 
-      board = Board.new
-      turn = Turn.new(board)
+    turn.choice = "D"
+    turn.place_token(:computer)
 
-      turn.choice = "D"
-      turn.place_token(:computer)
+    expect(turn.d_count).to eq(1)
 
-      expect(turn.d_count).to eq(1)
+  end 
 
-    end 
+  it "after each turn the board changes" do
+    board = Board.new
+    turn = Turn.new(board)
 
-    it "after each turn the board changes" do
-      board = Board.new
-      turn = Turn.new(board)
-
-      turn.choose_column(:computer)
-      turn.place_token(:computer)
-      empty_board = {"A": [".", ".", ".", ".", ".", "."], 
+    turn.choose_column(:computer)
+    turn.place_token(:computer)
+    empty_board = {"A": [".", ".", ".", ".", ".", "."], 
       "B": [".", ".", ".", ".", ".", "."],  
       "C": [".", ".", ".", ".", ".", "."],
       "D": [".", ".", ".", ".", ".", "."], 
@@ -83,18 +81,16 @@ RSpec.describe Turn do
       "F": [".", ".", ".", ".", ".", "."],
       "G": [".", ".", ".", ".", ".", "."]}
       
-      expect(board.board).not_to eq(empty_board)
-      
-    end
+    expect(board.board).not_to eq(empty_board)
+  end
 
-    it "a computer token will be an O and be placed at the end of the array " do
-# Note the reverse function on the turn.rb method place_token(type)- this was a creation of the way the board prints. 
-      board = Board.new
-      turn = Turn.new(board)
+  it "a computer token will be an O and be placed at the end of the array " do
+    board = Board.new
+    turn = Turn.new(board)
 
-      turn.choice = "D"
-      turn.place_token(:computer)
-      transformed_board = {"A": [".", ".", ".", ".", ".", "."], 
+    turn.choice = "D"
+    turn.place_token(:computer)
+    transformed_board = {"A": [".", ".", ".", ".", ".", "."], 
       "B": [".", ".", ".", ".", ".", "."],  
       "C": [".", ".", ".", ".", ".", "."],
       "D": [".", ".", ".", ".", ".", "O"], 
@@ -102,18 +98,16 @@ RSpec.describe Turn do
       "F": [".", ".", ".", ".", ".", "."],
       "G": [".", ".", ".", ".", ".", "."]}
       
-      expect(board.board).to eq(transformed_board)
-      
-    end
+    expect(board.board).to eq(transformed_board)
+  end
 
-    it "a human token will be an X and be placed at the end of the array " do
-  # Note the reverse function on the turn.rb method place_token(type)- this was a creation of the way the board prints. 
-      board = Board.new
-      turn = Turn.new(board)
+  it "a human token will be an X and be placed at the end of the array " do
+    board = Board.new
+    turn = Turn.new(board)
      
-      turn.choice = "A"
-      turn.place_token(:human)
-      transformed_board = {"A": [".", ".", ".", ".", ".", "X"], 
+    turn.choice = "A"
+    turn.place_token(:human)
+    transformed_board = {"A": [".", ".", ".", ".", ".", "X"], 
       "B": [".", ".", ".", ".", ".", "."],  
       "C": [".", ".", ".", ".", ".", "."],
       "D": [".", ".", ".", ".", ".", "."], 
@@ -121,202 +115,182 @@ RSpec.describe Turn do
       "F": [".", ".", ".", ".", ".", "."],
       "G": [".", ".", ".", ".", ".", "."]}
             
-       expect(board.board).to eq(transformed_board)
-            
-    end
+      expect(board.board).to eq(transformed_board)
+  end
 
-    it "it will print a message for the computer winner" do 
-      board = Board.new
-      turn = Turn.new(board)
+  it "it will print a message for the computer winner" do 
+    board = Board.new
+    turn = Turn.new(board)
 
-      expect(turn.print_winner(turn.computer)).to eq("The Computer Connected 4-- don't worry, you could one day design a program where you always win!")
-    end
+    expect(turn.print_winner(turn.computer)).to eq("The Computer Connected 4-- don't worry, you could one day design a program where you always win!")
+  end
 
-    it "it will print a message for the human winner" do 
-      board = Board.new
-      turn = Turn.new(board)
+  it "it will print a message for the human winner" do 
+    board = Board.new
+    turn = Turn.new(board)
+    
+    expect(turn.print_winner(turn.player)).to eq("You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back.")
+  end
+
+  it "it will print a draw" do 
+    board = Board.new
+    turn = Turn.new(board)
+
+    expect(turn.print_winner("draw")).to eq("This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something.")
+  end
+
+  it "if neither player has any pieces, the victor will be a draw " do 
+    board = Board.new
+    
+    turn = Turn.new(board)
+    turn.player.pieces = 0
+    turn.computer.pieces = 0
+    turn.check_winner
+
+    expect(turn.victor).to eq("draw")
+  end
+
+  it "if four XXXXs are connected vertically, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:A] = [".", "X", "X", "X", "X", "."]
+    turn.check_winner
+
+    expect(turn.victor).to eq(turn.player)
+  end
+
+  it "if four OOOOs are connected vertically, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
      
-
-      expect(turn.print_winner(turn.player)).to eq("You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back.")
-    end
-
-    it "it will print a draw" do 
-      board = Board.new
-      turn = Turn.new(board)
-
-      expect(turn.print_winner("draw")).to eq("This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something.")
-    end
-
-    it "if neither player has any pieces, the victor will be a draw " do 
-      board = Board.new
-      turn = Turn.new(board)
-      turn.player.pieces = 0
-      turn.computer.pieces = 0
-      turn.check_winner
-
-      expect(turn.victor).to eq("draw")
-    end
-
-
-        # EVERYTHING BELOW HERE WE STILL NEED TO GET TO RUN 
-
-        # VERTICAL WIN
-
-    it "if four XXXXs are connected vertically, the player is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
+    turn.board.board[:A] = [".", "O", "O", "O", "O", "."]
+    turn.check_winner
       
-      turn.board.board[:A] = [".", "X", "X", "X", "X", "."]
-      turn.check_winner
+    expect(turn.victor).to eq(turn.computer)
+  end
 
-      expect(turn.victor).to eq(turn.player)
-    end
-
-    it "if four OOOOs are connected vertically, the computer is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-     
-      turn.board.board[:A] = [".", "O", "O", "O", "O", "."]
-      turn.check_winner
+  it "Round 2 with different placement of XXXXs: if four XXXXs are connected vertically, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
       
-      expect(turn.victor).to eq(turn.computer)
+    turn.board.board[:B] = ["X", "X", "X", "X", ".", "."]
+    turn.check_winner
+
+    expect(turn.victor).to eq(turn.player)
+  end
+
+  it "Round 2 with different placement of OOOOs: if four OOOOs are connected vertically, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
       
-    end
+    turn.board.board[:B] = ["O", "O", "O", "O", ".", "."]
+    turn.check_winner
 
-    it "Round 2 with different placement of XXXXs: if four XXXXs are connected vertically, the player is declared the victor" do 
+    expect(turn.victor).to eq(turn.computer)
+  end
 
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:B] = ["X", "X", "X", "X", ".", "."]
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.player)
-    end
-
-    it "Round 2 with different placement of OOOOs: if four OOOOs are connected vertically, the computer is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:B] = ["O", "O", "O", "O", ".", "."]
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.computer)
+  it "if four OOOOs are connected horizontally, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
       
-    end
+    turn.board.board[:A][5] = "O"
+    turn.board.board[:B][5] = "O"
+    turn.board.board[:C][5] = "O"
+    turn.board.board[:D][5] = "O"
+    turn.check_winner
 
-    # HORIZONTAL WINS
+    expect(turn.victor).to eq(turn.computer)
+  end
 
-    it "if four OOOOs are connected horizontally, the computer is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
+  it "if four XXXXs are connected horizontally, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
       
-      turn.board.board[:A][5] = "O"
-      turn.board.board[:B][5] = "O"
-      turn.board.board[:C][5] = "O"
-      turn.board.board[:D][5] = "O"
-      turn.check_winner
+    turn.board.board[:A][5] = "X"
+    turn.board.board[:B][5] = "X"
+    turn.board.board[:C][5] = "X"
+    turn.board.board[:D][5] = "X"
+    turn.check_winner
 
-      expect(turn.victor).to eq(turn.computer)
+    expect(turn.victor).to eq(turn.player)
+  end
 
-    end
+  it "Round 2 with different placement of OOOOs: if four OOOOs are connected horizontally, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:D][2] = "O"
+    turn.board.board[:E][2] = "O"
+    turn.board.board[:F][2] = "O"
+    turn.board.board[:G][2] = "O"
+    turn.check_winner
 
-    it "if four XXXXs are connected horizontally, the player is declared the victor" do 
+    expect(turn.victor).to eq(turn.computer)
+  end
 
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:A][5] = "X"
-      turn.board.board[:B][5] = "X"
-      turn.board.board[:C][5] = "X"
-      turn.board.board[:D][5] = "X"
-      turn.check_winner
+  it "Round 2 with different placement of XXXXs:if four XXXXs are connected horizontally, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:D][2] = "X"
+    turn.board.board[:E][2] = "X"
+    turn.board.board[:F][2] = "X"
+    turn.board.board[:G][2] = "X"
+    turn.check_winner
 
-      expect(turn.victor).to eq(turn.player)
+    expect(turn.victor).to eq(turn.player)
+  end
 
-    end
+  it "if four XXXXs are connected diagonally, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:A][2] = "X"
+    turn.board.board[:B][3] = "X"
+    turn.board.board[:C][4] = "X"
+    turn.board.board[:D][5] = "X"
+    turn.check_winner
 
-    it "Round 2 with different placement of OOOOs: if four OOOOs are connected horizontally, the computer is declared the victor" do 
+    expect(turn.victor).to eq(turn.player)
+  end
 
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:D][2] = "O"
-      turn.board.board[:E][2] = "O"
-      turn.board.board[:F][2] = "O"
-      turn.board.board[:G][2] = "O"
-      turn.check_winner
+  it "if four OOOOs are connected diagonally, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:A][2] = "O"
+    turn.board.board[:B][3] = "O"
+    turn.board.board[:C][4] = "O"
+    turn.board.board[:D][5] = "O"
+    turn.check_winner
 
-      expect(turn.victor).to eq(turn.computer)
+    expect(turn.victor).to eq(turn.computer)
+  end
 
-    end
+  it "Round 2 with different placement of XXXXs: if four XXXXs are connected diagonally, the player is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:G][0] = "X"
+    turn.board.board[:F][1] = "X" 
+    turn.board.board[:E][2] = "X" 
+    turn.board.board[:D][3] = "X"
+    turn.check_winner
 
-    it "Round 2 with different placement of XXXXs:if four XXXXs are connected horizontally, the player is declared the victor" do 
+    expect(turn.victor).to eq(turn.player)
+  end
 
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:D][2] = "X"
-      turn.board.board[:E][2] = "X"
-      turn.board.board[:F][2] = "X"
-      turn.board.board[:G][2] = "X"
-      turn.check_winner
+  it "Round 2 with different placement of OOOOs: if four OOOOs are connected diagonally, the computer is declared the victor" do 
+    board = Board.new
+    turn = Turn.new(board)
+      
+    turn.board.board[:G][0] = "O"
+    turn.board.board[:F][1] = "O" 
+    turn.board.board[:E][2] = "O" 
+    turn.board.board[:D][3] = "O"
+    turn.check_winner
 
-      expect(turn.victor).to eq(turn.player)
-
-    end
-
-    it "if four XXXXs are connected diagonally, the player is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:A][2] = "X"
-      turn.board.board[:B][3] = "X"
-      turn.board.board[:C][4] = "X"
-      turn.board.board[:D][5] = "X"
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.player)
-
-    end
-
-    it "if four OOOOs are connected diagonally, the computer is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:A][2] = "O"
-      turn.board.board[:B][3] = "O"
-      turn.board.board[:C][4] = "O"
-      turn.board.board[:D][5] = "O"
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.computer)
-    end
-
-    it "Round 2 with different placement of XXXXs: if four XXXXs are connected diagonally, the player is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:G][0] = "X"
-      turn.board.board[:F][1] = "X" 
-      turn.board.board[:E][2] = "X" 
-      turn.board.board[:D][3] = "X"
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.player)
-
-    end
-
-    it "Round 2 with different placement of OOOOs: if four OOOOs are connected diagonally, the computer is declared the victor" do 
-
-      board = Board.new
-      turn = Turn.new(board)
-      turn.board.board[:G][0] = "O"
-      turn.board.board[:F][1] = "O" 
-      turn.board.board[:E][2] = "O" 
-      turn.board.board[:D][3] = "O"
-      turn.check_winner
-
-      expect(turn.victor).to eq(turn.computer)
-    end
-
+    expect(turn.victor).to eq(turn.computer)
+  end
 end
