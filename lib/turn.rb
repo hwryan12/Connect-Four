@@ -1,13 +1,24 @@
 class Turn 
-    attr_reader :turn, :a_count, :b_count, :c_count, :d_count, :e_count, :f_count, :g_count, :board, :computer, :player, :victor 
-    attr_accessor :choice
+    attr_reader :turn, 
+                :a_count, 
+                :b_count, 
+                :c_count, 
+                :d_count, 
+                :e_count, 
+                :f_count, 
+                :g_count, 
+                :board, 
+                :computer
+    attr_accessor :choice, 
+                  :victor, 
+                  :player 
 
     def initialize(board)
         @board = board
         @humanpieces = Piece.new(:human)
         @computerpieces = Piece.new(:computer)
-        @player= Player.new(:human, @humanpieces)
-        @computer= Player.new(:computer, @computerpieces)
+        @player = Player.new(:human, @humanpieces)
+        @computer = Player.new(:computer, @computerpieces)
         @choice = nil
         @a_count = 0 
         @b_count = 0
@@ -40,7 +51,7 @@ class Turn
         if @victor != nil 
             self.new_game
         end
-
+        play_turn
     end 
 
     def choose_column(type)
@@ -121,7 +132,6 @@ class Turn
                 if @f_count >= 6 
                     puts "This row is filled up. Try another!"
                     choose_column(:human)
-                    # require 'pry'; binding.pry
                 else @board.board[:F].reverse.find do |letter|
                     if letter == (".")
                         letter.replace("X")
@@ -226,31 +236,25 @@ class Turn
     end 
     
     def check_winner
-        # require 'pry'; binding.pry
         draw
         vertical_win
         horizontal_win
         diagonal_win
-        # require 'pry'; binding.pry
-
-
+        
         if @victor != nil 
             print_winner(@victor)
         end
     end 
 
     def draw  
-        # require 'pry'; binding.pry
         if @player.pieces == 0 && @computer.pieces == 0
             puts "Draw! There's no more pieces."
             puts "You can try again!"
             @victor = "draw"
         end
-        # require 'pry'; binding.pry
     end
 
     def print_winner(victor)
-        # require 'pry'; binding.pry
         if victor == "draw"
             puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something." 
             "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
@@ -264,10 +268,11 @@ class Turn
     end
     
     def vertical_win
-        @all_arrays = [@board.a, @board.b, @board.c, @board.d, @board.e, @board.f, @board.g]
-
+        @all_arrays = [@board.board[:A], @board.board[:B], @board.board[:C], @board.board[:D], 
+                        @board.board[:E], @board.board[:F], @board.board[:G]]
+            
         @all_arrays.each do |array|
-            vert_array = array.join("")
+        vert_array = array.join("")
             if vert_array.include?("XXXX")
                 puts "Connected 4 Vertically!"
                 puts "Player Wins!"
@@ -281,66 +286,71 @@ class Turn
     end
 
     def horizontal_win
-
         horizontal_arrays = []
-        horizontal_arrays << [@board.a[5], @board.b[5], @board.c[5], @board.d[5], @board.e[5], @board.f[5], @board.g[5]] 
-        horizontal_arrays << [@board.a[4], @board.b[4], @board.c[4], @board.d[4], @board.e[4], @board.f[4], @board.g[4]] 
-        horizontal_arrays << [@board.a[3], @board.b[3], @board.c[3], @board.d[3], @board.e[3], @board.f[3], @board.g[3]] 
-        horizontal_arrays << [@board.a[2], @board.b[2], @board.c[2], @board.d[2], @board.e[2], @board.f[2], @board.g[2]] 
-        horizontal_arrays << [@board.a[1], @board.b[1], @board.c[1], @board.d[1], @board.e[1], @board.f[1], @board.g[1]] 
-        horizontal_arrays << [@board.a[0], @board.b[0], @board.c[0], @board.d[0], @board.e[0], @board.f[0], @board.g[0]] 
-        
+        horizontal_arrays << [@board.board[:A][5], @board.board[:B][5], @board.board[:C][5], @board.board[:D][5], 
+                            @board.board[:E][5], @board.board[:F][5], @board.board[:G][5]] 
+        horizontal_arrays << [@board.board[:A][4], @board.board[:B][4], @board.board[:C][4], @board.board[:D][4], 
+                            @board.board[:E][4], @board.board[:F][4], @board.board[:G][4]] 
+        horizontal_arrays << [@board.board[:A][3], @board.board[:B][3], @board.board[:C][3], @board.board[:D][3], 
+                            @board.board[:E][3], @board.board[:F][3], @board.board[:G][3]] 
+        horizontal_arrays << [@board.board[:A][2], @board.board[:B][2], @board.board[:C][2], @board.board[:D][2], 
+                            @board.board[:E][2], @board.board[:F][2], @board.board[:G][2]] 
+        horizontal_arrays << [@board.board[:A][1], @board.board[:B][1], @board.board[:C][1], @board.board[:D][1], 
+                            @board.board[:E][1], @board.board[:F][1], @board.board[:G][1]] 
+        horizontal_arrays << [@board.board[:A][0], @board.board[:B][0], @board.board[:C][0], @board.board[:D][0], 
+                            @board.board[:E][0], @board.board[:F][0], @board.board[:G][0]] 
+       
         horizontal_arrays.each do |array|
-            horiz_array_to_check = array.join("")
+        horiz_array_to_check = array.join("")
             if horiz_array_to_check.include?("XXXX")
                 puts "Connected 4 Horizontally!"
                 puts "Player Wins!"
-                @victor == @player
+                @victor = @player
             elsif horiz_array_to_check.include?("OOOO")
                 puts "Connected 4 Horizontally!"
                 puts "The Computer Wins!"
-                @victor == @computer
+                @victor = @computer
             end
         end
     end
 
     def diagonal_win
         diag_array = []
-        diag_array << [@board.a[2], @board.b[3], @board.c[4], @board.d[5]]
-        diag_array << [@board.a[1], @board.b[2], @board.c[3], @board.d[4]]
-        diag_array << [@board.b[2], @board.c[3], @board.d[4], @board.e[5]]
-        diag_array << [@board.a[0], @board.b[1], @board.c[2], @board.d[3]]
-        diag_array << [@board.b[1], @board.c[2], @board.d[3], @board.e[4]]
-        diag_array << [@board.c[2], @board.d[3], @board.e[4], @board.f[5]]
-        diag_array << [@board.b[0], @board.c[1], @board.d[2], @board.e[3]]
-        diag_array << [@board.c[1], @board.d[2], @board.e[3], @board.f[4]]
-        diag_array << [@board.d[2], @board.e[3], @board.f[4], @board.g[5]]
-        diag_array << [@board.c[0], @board.d[1], @board.e[2], @board.f[3]]
-        diag_array << [@board.d[1], @board.e[2], @board.f[3], @board.g[4]]
-        diag_array << [@board.d[0], @board.e[1], @board.f[2], @board.g[3]]
-        diag_array << [@board.g[2], @board.f[3], @board.e[4], @board.d[5]]
-        diag_array << [@board.g[1], @board.f[2], @board.e[3], @board.d[4]]
-        diag_array << [@board.f[2], @board.e[3], @board.d[4], @board.c[5]]
-        diag_array << [@board.g[0], @board.f[1], @board.e[2], @board.d[3]]
-        diag_array << [@board.f[1], @board.e[2], @board.d[3], @board.c[4]]
-        diag_array << [@board.e[2], @board.d[0], @board.c[4], @board.b[5]]
-        diag_array << [@board.f[0], @board.e[1], @board.d[2], @board.c[3]]
-        diag_array << [@board.e[1], @board.d[2], @board.c[3], @board.b[4]]
-        diag_array << [@board.d[2], @board.c[3], @board.b[4], @board.a[5]]
-        diag_array << [@board.e[1], @board.d[1], @board.c[2], @board.b[3]]
-        diag_array << [@board.d[1], @board.c[2], @board.b[3], @board.a[4]]
-        diag_array << [@board.d[0], @board.c[1], @board.b[2], @board.a[3]]
+        diag_array << [@board.board[:A][2], @board.board[:B][3], @board.board[:C][4], @board.board[:D][5]]
+        diag_array << [@board.board[:A][1], @board.board[:B][2], @board.board[:C][3], @board.board[:D][4]]
+        diag_array << [@board.board[:B][2], @board.board[:C][3], @board.board[:D][4], @board.board[:E][5]]
+        diag_array << [@board.board[:A][0], @board.board[:B][1], @board.board[:C][2], @board.board[:D][3]]
+        diag_array << [@board.board[:B][1], @board.board[:C][2], @board.board[:D][3], @board.board[:E][4]]
+        diag_array << [@board.board[:C][2], @board.board[:D][3], @board.board[:E][4], @board.board[:F][5]]
+        diag_array << [@board.board[:B][0], @board.board[:C][1], @board.board[:D][2], @board.board[:E][3]]
+        diag_array << [@board.board[:C][1], @board.board[:D][2], @board.board[:E][3], @board.board[:F][4]]
+        diag_array << [@board.board[:D][2], @board.board[:E][3], @board.board[:F][4], @board.board[:G][5]]
+        diag_array << [@board.board[:C][0], @board.board[:D][1], @board.board[:E][2], @board.board[:F][3]]
+        diag_array << [@board.board[:D][1], @board.board[:E][2], @board.board[:F][3], @board.board[:G][4]]
+        diag_array << [@board.board[:D][0], @board.board[:E][1], @board.board[:F][2], @board.board[:G][3]]
+        diag_array << [@board.board[:G][2], @board.board[:F][3], @board.board[:E][4], @board.board[:D][5]]
+        diag_array << [@board.board[:G][1], @board.board[:F][2], @board.board[:E][3], @board.board[:D][4]]
+        diag_array << [@board.board[:F][2], @board.board[:E][3], @board.board[:D][4], @board.board[:C][5]]
+        diag_array << [@board.board[:G][0], @board.board[:F][1], @board.board[:E][2], @board.board[:D][3]]
+        diag_array << [@board.board[:F][1], @board.board[:E][2], @board.board[:D][3], @board.board[:C][4]]
+        diag_array << [@board.board[:E][2], @board.board[:D][0], @board.board[:C][4], @board.board[:B][5]]
+        diag_array << [@board.board[:F][0], @board.board[:E][1], @board.board[:D][2], @board.board[:C][3]]
+        diag_array << [@board.board[:E][1], @board.board[:D][2], @board.board[:C][3], @board.board[:B][4]]
+        diag_array << [@board.board[:D][2], @board.board[:C][3], @board.board[:B][4], @board.board[:A][5]]
+        diag_array << [@board.board[:E][1], @board.board[:D][1], @board.board[:C][2], @board.board[:B][3]]
+        diag_array << [@board.board[:D][1], @board.board[:C][2], @board.board[:B][3], @board.board[:A][4]]
+        diag_array << [@board.board[:D][0], @board.board[:C][1], @board.board[:B][2], @board.board[:A][3]]
 
         diag_array.each do |array|
-            diag_array2 = array.join("")
-            if diag_array2.include?("XXXX")
+        diag_array_to_check = array.join("")
+            if diag_array_to_check.include?("XXXX")
                 puts "Connected 4 Diagonally!"
                 puts "Player Wins!"
-                @victor == @player
-            elsif diag_array2.include?("OOOO")
+                @victor = @player
+            elsif diag_array_to_check.include?("OOOO")
                 puts "Connected 4 Diagonally!"
                 puts "The Computer Wins!"
-                @victor == @computer
+                @victor = @computer
             end
         end
     end
@@ -349,5 +359,4 @@ class Turn
         new_game = Game.new
         new_game.start_game
     end
-    
 end
