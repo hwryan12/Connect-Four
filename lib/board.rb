@@ -20,17 +20,27 @@ class Board
     rows =[]
     rows2 =[]
     i = 0
+
     puts "A B C D E F G "
     6.times do 
       @board.each do |key, value|
         rows << value[i]
       end
       i += 1
+
       rows2 << rows
+      
       rows = []
-      end 
+      
+    end 
+
       rows2.each do |element|
       puts element.join(" ")
     end
+
   end
+
+  # def diagonal_grid 
+
+  # end
 end 

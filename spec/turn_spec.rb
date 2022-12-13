@@ -7,9 +7,14 @@ require 'rspec'
 
 RSpec.describe Turn do
   it "a turn can exist" do 
-
-    turn = Turn.new(@board)
-    expect(turn).to be_an_instance_of(Turn)
+    board = Board.new
+    humanpieces = Piece.new(:human)
+    computerpieces = Piece.new(:computer)
+    player = Player.new(:human, humanpieces)
+    computer = Player.new(:computer, computerpieces)
+    new_turn = Turn.new(board, player, computer)
+    
+    expect(new_turn).to be_an_instance_of(Turn)
   end
 
   it "each player starts out with 21 pieces" do
