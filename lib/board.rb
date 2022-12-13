@@ -40,7 +40,14 @@ class Board
 
   end
 
-  # def diagonal_grid 
-
-  # end
+  def diagonal_grid 
+    diag_array = []
+    i = 0
+    board.each do |key, value|
+      diag_array << value[i]
+      i += 1
+      require 'pry'; binding.pry
+    end
+    require 'pry'; binding.pry
+  end
 end 

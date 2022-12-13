@@ -6,7 +6,7 @@ def initialize
     @computerpieces = Piece.new(:computer)
     @player = Player.new(:human, @humanpieces)
     @computer = Player.new(:computer, @computerpieces)
-    @turn = Turn.new(@board, @player, @computer)
+    # @turn = Turn.new(@board, @player, @computer)
 end 
 
 def start_game 
