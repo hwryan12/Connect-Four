@@ -21,10 +21,9 @@ RSpec.describe Board do
 
   end 
 
-  it "can print a diagonal grid of arrays" do 
-    board= Board.new 
-    expect(board.diagonal_grid).to eq() 
+  # it "can print a diagonal grid of arrays" do 
+  #   board= Board.new 
+  #   expect(board.diagonal_grid).to eq() 
 
-  end
-
+  # end
 end

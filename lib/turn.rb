@@ -17,24 +17,19 @@ class Turn
 
 
     def human_turn 
-
         choose_column_human
             choice = @choice
-
-        if column_valid(choice) == true 
+            if column_valid(choice) == true 
                 place_token(choice, :human)
                 puts "HUMAN TURN Below"
                 @board.board_grid
                 player.remove_token_from_list
-
         else puts "Not Valid. Pick another column."
             choose_column_human
         end
-       
     end 
 
     def computer_turn 
-
         choose_column_computer
             choice = @choice
         while column_valid(choice) == false
@@ -44,7 +39,6 @@ class Turn
             puts "COMPUTER TURN Below"
             @board.board_grid
             computer.remove_token_from_list
-        
     end 
 
     def choose_column_human
@@ -70,7 +64,6 @@ class Turn
                 @choice = ["A", "B", "C", "D", "E", "F", "G"].sample
     end
     
-
     def column_valid(choice)
         i = choice 
         if @hash_counter[i] < 6 
@@ -90,6 +83,4 @@ class Turn
         end
         @hash_counter[choice] += 1
     end 
-
-    
 end 

@@ -1,5 +1,9 @@
 class Game
-    attr_accessor :victor, :computer, :player, :board
+    attr_accessor :victor, 
+                  :computer, 
+                  :player, 
+                  :board
+    
     def initialize
         @board = Board.new
         @humanpieces = Piece.new(:human)
@@ -94,16 +98,16 @@ class Game
     def vertical_win
         @all_arrays = [@board.board[:A], @board.board[:B], @board.board[:C], @board.board[:D], 
                         @board.board[:E], @board.board[:F], @board.board[:G]]
-            @all_arrays.each do |array|
-                vert_array = array.join("")
-                if vert_array.include?("XXXX")
-                    puts "Connected 4 Vertically!"
-                    puts "Player Wins!"
-                    @victor = @player
-                elsif vert_array.include?("OOOO")
-                    puts "Connected 4 Vertically!"
-                    puts "The Computer Wins!"
-                    @victor = @computer
+        @all_arrays.each do |array|
+            vert_array = array.join("")
+            if vert_array.include?("XXXX")
+                puts "Connected 4 Vertically!"
+                puts "Player Wins!"
+                @victor = @player
+            elsif vert_array.include?("OOOO")
+                puts "Connected 4 Vertically!"
+                puts "The Computer Wins!"
+                @victor = @computer
             end
         end
     end
