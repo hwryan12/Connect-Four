@@ -3,9 +3,8 @@ class Turn
                 :board, 
                 :computer, 
                 :player,
-                :victor,
                 :choice
-    attr_accessor :hash_counter
+    attr_accessor :hash_counter, :victor
 
     def initialize(board, player, computer)
         @board = board
