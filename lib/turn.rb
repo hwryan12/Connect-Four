@@ -7,12 +7,10 @@ class Turn
                 :choice
     attr_accessor :hash_counter, :choice
 
-    def initialize(board)
+    def initialize(board, player, computer)
         @board = board
-        @humanpieces = Piece.new(:human)
-        @computerpieces = Piece.new(:computer)
-        @player = Player.new(:human, @humanpieces)
-        @computer = Player.new(:computer, @computerpieces)
+        @player = player
+        @computer = computer
         @choice = nil
         @victor == nil 
         @hash_counter = {"A"=>0,"B"=>0,"C"=>0,"D"=>0,"E"=>0,"F"=>0,"G"=>0}
@@ -20,35 +18,49 @@ class Turn
 
     def play_turn #Big Helper Method- runs the game 
        
+        human_turn 
+        computer_turn 
+
+        self.play_turn 
+    end 
+
+    def human_turn 
+
         choose_column(:human)
         choice = @choice
 
         if column_valid(choice) == true 
-            place_token(choice, :human)
-            puts "HUMAN TURN Below"
-            @board.board_grid
+                place_token(choice, :human)
+                puts "HUMAN TURN Below"
+                @board.board_grid
+                player.remove_token_from_list
 
         else puts "Not Valid. Pick another column."
             choose_column(:human)
         end
 
-        self.check_winner
-        
-        if @victor != nil 
-            self.new_game
-        end
+        self.check_winner_helper
 
-        
+    end 
+
+
+    def computer_turn 
+
         choose_column(:computer)
         choice = @choice
-
-        if column_valid(choice) == true 
+        while column_valid(choice) == false
+            choice = choose_column(:computer)
+        end
             place_token(choice, :computer)
             puts "COMPUTER TURN Below"
             @board.board_grid
+            computer.remove_token_from_list
 
-        else choose_column(:computer)
-        end
+        self.check_winner_helper
+        
+    end 
+
+    def check_winner_helper
 
         self.check_winner
         if @victor != nil 
@@ -56,12 +68,12 @@ class Turn
     
         end
 
-        self.play_turn
-    end 
+    end
+
 
     def choose_column(type)
         if type == :human
-            puts "Pick which row you would like to input the next token. Your choices are: 
+            puts "NEW TURN: Pick which row you would like to input the next token. Your choices are: 
                 A
                 B
                 C
@@ -70,6 +82,14 @@ class Turn
                 F
                 G"
                 @choice = gets.chomp
+
+                if @choice == "EXIT"
+                    abort 
+                elsif @choice != "A" && @choice != "B" && @choice != "C" && @choice != "D" && @choice != "E" && @choice != "F" && @choice != "G"
+                    puts "Invalid choice. Please pick one of the designated options (type EXIT to leave the game)"
+                    choose_column(:human)
+                end
+
         elsif type == :computer
                 @choice = ["A", "B", "C", "D", "E", "F", "G"].sample
         end
@@ -78,7 +98,7 @@ class Turn
     def column_valid(choice)
         i = choice 
         if @hash_counter[i] < 6 
-            true
+             true
         else false 
         end 
     end
@@ -105,14 +125,6 @@ class Turn
             print_winner(@victor)
         end
     end 
-
-    def draw  
-        if @player.pieces == 0 && @computer.pieces == 0
-            puts "Draw! There's no more pieces."
-            puts "You can try again!"
-            @victor = "draw"
-        end
-    end
 
     def print_winner(victor)
         if victor == "draw"

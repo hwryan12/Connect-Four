@@ -1,10 +1,12 @@
 class Game 
 
 def initialize
-    board = Board.new
-    @board = board
-    turn = Turn.new(@board)
-    @turn = turn 
+    @board = Board.new
+    @humanpieces = Piece.new(:human)
+    @computerpieces = Piece.new(:computer)
+    @player = Player.new(:human, @humanpieces)
+    @computer = Player.new(:computer, @computerpieces)
+    @turn = Turn.new(@board, @player, @computer)
 end 
 
 def start_game 
