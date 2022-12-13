@@ -29,6 +29,15 @@ class Game
     end 
     
     def welcome_message
+        puts '
+      _____                            _     ______
+     / ____|                          | |   |  ____|
+    | |     ___  _ __  _ __   ___  ___| |_  | |__ ___  _   _ _ __
+    | |    / _ \| \'_ \| \'_ \ / _ \/ __| __| |  __/ _ \| | | | \'__|
+    | |___| (_) | | | | | | |  __/ (__| |_  | | | (_) | |_| | |
+     \_____\___/|_| |_|_| |_|\___|\___|\__| |_|  \___/ \__,_|_|
+    '
+        sleep(1)
         puts "#{"=" * 77}" 
         puts "Hello, welcome to Hady and Harrison's game of Connect 4. I hope you enjoy it! 
         Enter p to play. Enter q to quit"
@@ -45,8 +54,10 @@ class Game
     end 
     
     def play_turn
+        sleep(1)
         @new_turn.human_turn 
         check_winner_helper
+        sleep(1)
         @new_turn.computer_turn 
         check_winner_helper
         play_turn
@@ -101,11 +112,11 @@ class Game
         @all_arrays.each do |array|
             vert_array = array.join("")
             if vert_array.include?("XXXX")
-                puts "Connected 4 Vertically!"
+                puts "~*~*~*~*~Connected 4 Vertically!~*~*~*~*~"
                 puts "Player Wins!"
                 @victor = @player
             elsif vert_array.include?("OOOO")
-                puts "Connected 4 Vertically!"
+                puts "~*~*~*~*~Connected 4 Vertically!~*~*~*~*~"
                 puts "The Computer Wins!"
                 @victor = @computer
             end
@@ -118,11 +129,11 @@ class Game
         horizontal_arrays.transpose.each do |array|
             horiz_array_to_check = array.join("")
             if horiz_array_to_check.include?("XXXX")
-                puts "Connected 4 Horizontally!"
+                puts "~*~*~*~*~Connected 4 Horizontally!~*~*~*~*~"
                 puts "Player Wins!"
                 @victor = @player
             elsif horiz_array_to_check.include?("OOOO")
-                puts "Connected 4 Horizontally!"
+                puts "~*~*~*~*~Connected 4 Horizontally!~*~*~*~*~"
                 puts "The Computer Wins!"
                 @victor = @computer
             end
@@ -158,11 +169,11 @@ class Game
         diag_array.each do |array|
             diag_array_to_check = array.join("")
             if diag_array_to_check.include?("XXXX")
-                puts "Connected 4 Diagonally!"
+                puts "~*~*~*~*~Connected 4 Diagonally!~*~*~*~*~"
                 puts "Player Wins!"
                 @victor = @player
             elsif diag_array_to_check.include?("OOOO")
-                puts "Connected 4 Diagonally!"
+                puts "~*~*~*~*~Connected 4 Diagonally!~*~*~*~*~"
                 puts "The Computer Wins!"
                 @victor = @computer
             end

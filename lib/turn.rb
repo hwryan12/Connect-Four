@@ -23,6 +23,7 @@ class Turn
                 place_token(choice, :human)
                 puts "HUMAN TURN Below"
                 @board.board_grid
+                puts ""
                 player.remove_token_from_list
         else puts "Not Valid. Pick another column."
             choose_column_human
@@ -38,11 +39,13 @@ class Turn
             place_token(choice, :computer)
             puts "COMPUTER TURN Below"
             @board.board_grid
+            puts ""
             computer.remove_token_from_list
     end 
 
     def choose_column_human
-            puts "NEW TURN: Pick which row you would like to input the next token. Your choices are: 
+        puts ""
+        puts "NEW TURN: Pick which row you would like to input the next token. Your choices are: 
                 A
                 B
                 C
