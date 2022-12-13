@@ -1,11 +1,12 @@
 class Game
+    attr_accessor :victor, :computer, :player, :board
     def initialize
         @board = Board.new
         @humanpieces = Piece.new(:human)
         @computerpieces = Piece.new(:computer)
         @player = Player.new(:human, @humanpieces)
         @computer = Player.new(:computer, @computerpieces)
-        # @new_turn = Turn.new(@board, @player, @computer)
+        @victor = nil
     end 
     
     def start_game 
@@ -24,8 +25,10 @@ class Game
     end 
     
     def welcome_message
+        puts "#{"=" * 77}" 
         puts "Hello, welcome to Hady and Harrison's game of Connect 4. I hope you enjoy it! 
         Enter p to play. Enter q to quit"
+        puts "#{"=" * 77}" 
     end 
     
     def invalid_response
@@ -57,7 +60,7 @@ class Game
         vertical_win
         horizontal_win
         diagonal_win
-        if @victor != nil 
+        if @victor != nil
             print_winner(@victor)
         end
     end 
@@ -74,14 +77,18 @@ class Game
     
     def human_victor_message
         puts "You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back." 
+        "You connected 4 and won-- are you sure you didn't make a program where you always win? Either way, pat yourself on the back." 
     end 
     
     def computer_victor_message
         puts "The Computer Connected 4-- don't worry, you could one day design a program where you always win!" 
+        "The Computer Connected 4-- don't worry, you could one day design a program where you always win!"
+        
     end 
     
     def draw_message 
-        puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something." 
+        puts "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
+        "This game has ended in a draw. Instead of feeling sad, feel happy! Congrats! You are the equal match of two aspiring programmers at Turing. So that has to mean something."
     end 
     
     def vertical_win
