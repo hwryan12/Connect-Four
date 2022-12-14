@@ -1,7 +1,6 @@
 class Player 
 
-  attr_accessor :name, 
-                :pieces, 
+  attr_accessor :pieces, 
                 :type 
 
   def initialize(type, pieces)
@@ -12,4 +11,5 @@ class Player
   def remove_token_from_list
     @pieces -= 1
   end
+
 end
